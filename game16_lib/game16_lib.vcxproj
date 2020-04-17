@@ -155,10 +155,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Support\CWindow.cpp" />
     <ClCompile Include="Device\Input.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Support\CWindow.h" />
     <ClInclude Include="Device\Input.h" />
     <ClInclude Include="Singleton.h" />
   </ItemGroup>

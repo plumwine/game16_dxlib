@@ -3,9 +3,11 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Device\Input.cpp" />
+    <ClCompile Include="Support\CWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Device\Input.h" />
+    <ClInclude Include="Support\CWindow.h" />
   </ItemGroup>
 </Project>

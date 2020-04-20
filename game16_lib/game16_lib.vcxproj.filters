@@ -5,11 +5,13 @@
     <ClCompile Include="Device\Input.cpp" />
     <ClCompile Include="GamePlayManager.cpp" />
     <ClCompile Include="Vector3.cpp" />
+    <ClCompile Include="Support\CWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Device\Input.h" />
     <ClInclude Include="GamePlayManager.h" />
     <ClInclude Include="Vector3.h" />
+    <ClInclude Include="Support\CWindow.h" />
   </ItemGroup>
 </Project>

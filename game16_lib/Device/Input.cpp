@@ -69,26 +69,22 @@ bool Input::isGamePadCrossPadUp(enum GAMEPAD_KEYCORD button, int padNum)
 //左アナログスティックの傾き X軸
 float Input::getGamePad_L_SticNum_X(int padNum)
 {
-	if (m_CurrentJoyInfoExs[padNum].dwXpos == 0x0000) return 0;
-	return m_CurrentJoyInfoExs[padNum].dwXpos / 0xFFFF;
+	return (m_CurrentJoyInfoExs[padNum].dwXpos) / (65535 / 10);
 }
 //左アナログスティックの傾き Y軸
 float Input::getGamePad_L_SticNum_Y(int padNum)
 {
-	if (m_CurrentJoyInfoExs[padNum].dwYpos == 0) return 0;
-	return m_CurrentJoyInfoExs[padNum].dwYpos / 65535;
+	return m_CurrentJoyInfoExs[padNum].dwYpos / (65535 / 10);
 }
 //右アナログスティックの傾き X軸
 float Input::getGamePad_R_SticNum_X(int padNum)
 {
-	if (m_CurrentJoyInfoExs[padNum].dwZpos == 0) return 0;
-	return m_CurrentJoyInfoExs[padNum].dwZpos / 65535;
+	return m_CurrentJoyInfoExs[padNum].dwZpos / (65535 / 10);
 }
 //右アナログスティックの傾き Y軸
 float Input::getGamePad_R_SticNum_Y(int padNum)
 {
-	if (m_CurrentJoyInfoExs[padNum].dwRpos == 0) return 0;
-	return m_CurrentJoyInfoExs[padNum].dwRpos / 65535;
+	return m_CurrentJoyInfoExs[padNum].dwRpos / (65535 / 10);
 }
 
 #pragma endregion

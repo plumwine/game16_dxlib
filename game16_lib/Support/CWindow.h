@@ -1,5 +1,12 @@
 #pragma once
-#include "../Singleton.h"
+#ifndef _CWINDOW_H
+#define _CWINDOW_H
+
+
+
+
+
+#include "Singleton.h"
 #include <windows.h>
 #include <iostream>
 
@@ -7,22 +14,23 @@
 class CWindow :public Singleton<CWindow>
 {
 protected:
-	CWindow(void);
-	virtual ~CWindow(void);
+	CWindow();
+	virtual ~CWindow();
 public:
 	friend class Singleton<CWindow>;               //Singletonでのインスタンス作成は許可
-
 	void showConsole();
 	void log(const char *format, ...);
 private:
 	FILE* pFile;
 };
+
+#endif // !_CWINDOW_H
+
 //例）
 //CWindow::getInstance().log("floatの引数%f: intの引数%d \n", 1.0,10);
 
 //指定
 /*
-
 指定子	対応する型	説明
 c	char	文字
 s	char *	文字列

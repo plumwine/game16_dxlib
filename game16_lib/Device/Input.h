@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _INPUT_H_
+#define _INPUT_H_
+
 #include <Windows.h>
 #pragma comment(lib,"winmm.lib")
 
@@ -335,3 +337,6 @@ enum GAMEPAD_KEYCORD
 };
 
 #pragma endregion
+
+
+#endif // _INPUT_H_

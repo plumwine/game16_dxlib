@@ -1,4 +1,6 @@
 #pragma once
+#ifndef _SINGLETON_H
+#define _SINGLETON_H
 
 //TemplateのT!!
 //シングルトンにするテンプレート機能
@@ -14,8 +16,6 @@ public:
 		static T instance;
 		return instance;
 	}
-
-
 	//シングルトンのインスタンスを生成(自信のgetInstance()をラップしてるだけだが、シングルトンのインスタンス生成として明示的なものを用意するため
 	inline static void createInstance()
 	{
@@ -24,7 +24,6 @@ public:
 
 
 protected:
-
 	//シングルトンのインスタンス
 	static Singleton *s_pInstance;
 
@@ -36,4 +35,4 @@ private:
 	void operator=(const Singleton& obj) {}     //代入禁止
 	Singleton(const Singleton &obj) {}          //コピーコンストラクタを禁止
 };
-
+#endif // !_SINGLETON_H

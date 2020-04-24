@@ -26,7 +26,7 @@ public:
 	//更新
 	void update(float deltaTime);
 	//描画
-	void Draw();
+	void draw(Renderer* renderer);
 private:
 	std::unordered_map <std::string,BaseScene*> scenes;     //シーンを格納
 	BaseScene* currentScene;                                //現在のシーン

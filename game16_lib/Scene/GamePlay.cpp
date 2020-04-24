@@ -9,27 +9,27 @@ GamePlay::GamePlay()
 
 GamePlay::~GamePlay()
 {
-	delete input;
+	delete m_pInput;
 }
 
 void GamePlay::initialize()
 {
-	input = new Input;
-	input->init();            //input初期化
+	m_pInput = new Input;
+	m_pInput->init();          //input初期化
 	isSceneEnd = false;        //最初はfalse
 	CWindow::getInstance().log("今ゲームプレイに切り替わった");
 }
 
 void GamePlay::update(float deltaTime)
 {
-	input->update();         //input更新
-	if (input->isKeyDown(KEYCORD::Z))
+	m_pInput->update();         //input更新
+	if (m_pInput->isKeyDown(KEYCORD::Z))
 	{
 		isSceneEnd = true;    //Z押されたらシーン終了（今だけ）
 	}
 }
 
-void GamePlay::draw()
+void GamePlay::draw(Renderer* renderer)
 {
 }
 

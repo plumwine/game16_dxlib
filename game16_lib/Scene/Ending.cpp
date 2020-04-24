@@ -13,22 +13,22 @@ Ending::~Ending()
 
 void Ending::initialize()
 {
-	input = new Input;
-	input->init();            //input初期化
+	m_pInput = new Input;
+	m_pInput->init();            //input初期化
 	isSceneEnd = false;       //最初はfalse
 	CWindow::getInstance().log("今エンディングに切り替わった");
 }
 
 void Ending::update(float deltaTime)
 {
-	input->update();         //input更新
-	if (input->isKeyDown(KEYCORD::Z))
+	m_pInput->update();         //input更新
+	if (m_pInput->isKeyDown(KEYCORD::Z))
 	{
 		isSceneEnd = true;    //Z押されたらシーン終了（今だけ）
 	}
 }
 
-void Ending::draw()
+void Ending::draw(Renderer* renderer)
 {
 }
 

@@ -2,6 +2,7 @@
 #ifndef _GAMEMANAGER_H_
 #define _GAMEMANAGER_H_
 #include "../Support/Singleton.h"
+#include "../Device/Renderer.h"
 
 
 //ゲーム全体管理  シングルトン
@@ -19,6 +20,8 @@ public:
 
 	//更新
 	void update();
+private:
+	Renderer* m_pRenderer;        //レンダラー（シングルトンでもよかったけど頻繁に使うしコードが長くなるから引数に置くことにする）
 };
 
 #endif // !_GAMEMANAGER_H_

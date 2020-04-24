@@ -1,5 +1,9 @@
 #pragma once
+#ifndef _VECTOR3_H_
+#define _VECTOR3_H_
+
 #include <DirectXMath.h>
+
 struct Vector3
 {
 	float x;
@@ -36,3 +40,5 @@ public:
 	friend const Vector3 operator * (float s, const Vector3& v);
 	friend const Vector3 operator / (const Vector3& v, float s);
 };
+
+#endif // !_VECTOR3_H_

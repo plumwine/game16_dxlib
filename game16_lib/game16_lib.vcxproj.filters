@@ -15,6 +15,9 @@
     <ClCompile Include="Scene\Title.cpp" />
     <ClCompile Include="Scene\Ending.cpp" />
     <ClCompile Include="Scene\GamePlay.cpp" />
+    <ClCompile Include="Device\Renderer.cpp" />
+    <ClCompile Include="Math\Vector2.cpp" />
+    <ClCompile Include="Device\Loader\TextuerLoad.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device\Input.h" />
@@ -33,5 +36,8 @@
     <ClInclude Include="Scene\Title.h" />
     <ClInclude Include="Scene\GamePlay.h" />
     <ClInclude Include="Scene\Ending.h" />
+    <ClInclude Include="Device\Renderer.h" />
+    <ClInclude Include="Math\Vector2.h" />
+    <ClInclude Include="Device\Loader\TextuerLoad.h" />
   </ItemGroup>
 </Project>

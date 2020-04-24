@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _SCENEMANAGER_H
-#define _SCENEMANAGER_H
+#ifndef _SCENEMANAGER_H_
+#define _SCENEMANAGER_H_
 
 #include <iostream>
 #include <string>

@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _BASESCENE_H
-#define _BASESCENE_H
+#ifndef _BASESCENE_H_
+#define _BASESCENE_H_
 #include <string>
 #include "../Device/Input.h"
 #include "../Support/CWindow.h"

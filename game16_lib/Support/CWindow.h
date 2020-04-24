@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _CWINDOW_H
-#define _CWINDOW_H
+#ifndef _CWINDOW_H_
+#define _CWINDOW_H_
 
 
 
@@ -24,7 +24,7 @@ private:
 	FILE* pFile;
 };
 
-#endif // !_CWINDOW_H
+#endif // !_CWINDOW_H_
 
 //—áj
 //CWindow::getInstance().log("float‚Ìˆø”%f: int‚Ìˆø”%d \n", 1.0,10);

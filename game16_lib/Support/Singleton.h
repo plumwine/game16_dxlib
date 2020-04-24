@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _SINGLETON_H
-#define _SINGLETON_H
+#ifndef _SINGLETON_H_
+#define _SINGLETON_H_
 
 //TemplateのT!!
 //シングルトンにするテンプレート機能

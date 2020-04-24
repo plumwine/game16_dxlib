@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _GAMEMANAGER_H
-#define _GAMEMANAGER_H
+#ifndef _GAMEMANAGER_H_
+#define _GAMEMANAGER_H_
 #include "../Support/Singleton.h"
 
 
@@ -21,4 +21,4 @@ public:
 	void update();
 };
 
-#endif // !_GAMEMANAGER_H
+#endif // !_GAMEMANAGER_H_

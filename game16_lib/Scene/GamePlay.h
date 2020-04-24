@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _GAMEPLAY_H
-#define _GAMEPLAY_H
+#ifndef _GAMEPLAY_H_
+#define _GAMEPLAY_H_
 #include "BaseScene.h"
 
 class GamePlay : public BaseScene

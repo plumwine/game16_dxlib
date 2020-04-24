@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _TITLE_H
-#define _TITLE_H
+#ifndef _TITLE_H_
+#define _TITLE_H_
 #include "BaseScene.h"
 
 class Title : public BaseScene

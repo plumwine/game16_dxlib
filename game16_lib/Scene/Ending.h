@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _ENDING_H
-#define _ENDING_H
+#ifndef _ENDING_H_
+#define _ENDING_H_
 #include "BaseScene.h"
 
 class Ending : public BaseScene

@@ -1,81 +1,74 @@
 #include "DxLib.h"
 #include <crtdbg.h>
-#include"Player.h"
-#include"Enemy.h"
 #include "GameBase/GameManager.h"
 #include "Support/CWindow.h"
 #include "Device/Input.h"
 
 
-//�֐��v���g�^�C�v�錾
-bool initialize();  //������
-void gameUpdate();	//���[�v����
-void release();		//����
+//関数プロトタイプ宣言
+bool initialize();  //初期化
+void gameUpdate();	//ループ処理
+void release();		//解放
 
-//�O���[�o���ϐ�
+//グローバル変数
 Input* input;
+int a = LoadGraph("img/TankATK.png");
 
-//������
+//初期化
 bool initialize()
 {
-	//���������[�N���o
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	CWindow::createInstance();               //�R���\�[���E�B���h�E�̐���
-	CWindow::getInstance().showConsole();	 //�R���\�[���E�B���h�E�̕\��
+	CWindow::createInstance();               
+	CWindow::getInstance().showConsole();
 
-	//	Window���[�h�̐ݒ���Window�^�C�g�����ݒ肷��
 	ChangeWindowMode(true);
 	SetMainWindowText("game16");
 
-	//	���ʃT�C�Y���ݒ�
 	SetGraphMode(840, 640, 16);
-	// �c�w���C�u��������������
-	if (DxLib_Init() == -1)	return false;    // �G���[���N�����璼���ɏI��
-
-	//	�`�������w��
-	SetDrawScreen(DX_SCREEN_BACK);
-	//	���ʔw�i�̐F���ݒ肷��
-
-	SetBackgroundColor(100, 100, 2);
+	if (DxLib_Init() == -1)	return false;
 
 
-	GameManager::createInstance();           //�Q�[���}�l�[�W���[�𐶐�
-	GameManager::getInstance().initialize(); //�Q�[���}�l�[�W���[��������
-	input = new Input();                     //input��new
-	input->init();                           //input�̏�����
+	SetBackgroundColor(0, 50, 50);
+
+
+	GameManager::createInstance();           
+	GameManager::getInstance().initialize(); 
+	input = new Input();                     
+	input->init();                           
 
 	return true;
 }
 
-//���[�v����
+//ループ処理
 void gameUpdate()
 {
-
 	while (ProcessMessage() == 0)
 	{
-		//�I������
+		//背景をクリアに
+		ClearDrawScreen();
 		if (input->isKeyDown(KEYCORD::ESCAPE))
 			return;
-
-		//�w�i���N���A
-		ClearDrawScreen();
-		input->update();                       //�X�V
-		GameManager::getInstance().update();   //�X�V
+		
+		input->update();
+		GameManager::getInstance().update();
+		ScreenFlip();
 	}
 }
-//����
+//解放
 void release()
 {
 	delete input;
 }
-// �v���O������ WinMain �����n�܂��܂�
+
+//WinMain
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	if (!initialize()) return -1;    //�������ł��Ȃ����ΏI��
+	if (!initialize()) return 0;    
 
-	gameUpdate();                    //�Q�[�����[�v
+	gameUpdate();                    
 
-	DxLib_End();                     // �c�w���C�u�����g�p�̏I������
-	release();                       //����
-	return 0;                        // �\�t�g�̏I��
+	DxLib_End();                     
+	release();  
+	
+	return 0;                        
 }

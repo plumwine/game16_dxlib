@@ -1,24 +1,21 @@
 #pragma once
-#ifndef _GAMEPLAY_H_
-#define _GAMEPLAY_H_
+#ifndef _LOADSCENE_H_
+#define _LOADSCENE_H_
 #include "BaseScene.h"
 
-class GamePlay : public BaseScene
+//ì«Ç›çûÇ›Ç∑ÇÈÉNÉâÉX
+class LoadScene : public BaseScene
 {
 public:
-	GamePlay();
-	~GamePlay();
-
+	LoadScene();
+	~LoadScene();
 	virtual void initialize() override;
 	virtual void update(float deltaTime) override;
 	virtual void draw(Renderer* renderer) override;
 	virtual void shutdown() override;
 	virtual bool isEnd() override;
 	virtual std::string nextScene() override;
-private:
-
 };
 
-
-#endif // !_GAMEPLAY_H
+#endif // !_LOADSCENE_H_
 

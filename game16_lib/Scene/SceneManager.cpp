@@ -51,6 +51,9 @@ void SceneManager::update(float deltaTime)
 	}
 }
 
-void SceneManager::Draw()
+void SceneManager::draw(Renderer* renderer)
 {
+	if (currentScene == nullptr) return;   //現在のシーンがなければ早期リターン
+	currentScene->draw(renderer);          //現在のシーンを描画
+
 }

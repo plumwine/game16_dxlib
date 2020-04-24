@@ -2,12 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Device\Input.cpp" />
-
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="GamePlayManager.cpp" />
     <ClCompile Include="Support\CWindow.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Math\Vector3.cpp" />
@@ -18,14 +13,12 @@
     <ClCompile Include="Device\Renderer.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
     <ClCompile Include="Device\Loader\TextuerLoad.cpp" />
+    <ClCompile Include="Actor\Player\Player.cpp" />
+    <ClCompile Include="Actor\Bulletes\Bullet.cpp" />
+    <ClCompile Include="Actor\Enemies\Enemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device\Input.h" />
-
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Bullet.h" />
-    <ClInclude Include="GamePlayManager.h" />
     <ClInclude Include="Support\CWindow.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\BaseScene.h" />
@@ -39,5 +32,8 @@
     <ClInclude Include="Device\Renderer.h" />
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Device\Loader\TextuerLoad.h" />
+    <ClInclude Include="Actor\Player\Player.h" />
+    <ClInclude Include="Actor\Bulletes\Bullet.h" />
+    <ClInclude Include="Actor\Enemies\Enemy.h" />
   </ItemGroup>
 </Project>

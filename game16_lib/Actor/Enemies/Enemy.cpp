@@ -1,7 +1,7 @@
 #include "Enemy.h"
-#include "Player.h"
+#include "../Player/Player.h"
 
-Enemy::Enemy(Vector3 pos)
+Enemy::Enemy(Vector2 pos)
 {
 }
 
@@ -12,7 +12,7 @@ Enemy::~Enemy()
 void Enemy::Init()
 {
 	enemyM = LoadGraph("img\\TankATKR.png");
-	enemyPos = Vector3(400,100,0);
+	enemyPos = Vector2(400,100);
 	MoveFlag = FALSE;
 }
 
@@ -28,7 +28,7 @@ void Enemy::Update()
 	{
 		
 
-		Vector3 Velocity = Vector3(0, 0, 0);
+		Vector2 Velocity = Vector2(0, 0);
 
 		if (key&PAD_INPUT_UP)
 		{

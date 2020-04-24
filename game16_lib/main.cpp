@@ -2,40 +2,80 @@
 #include <crtdbg.h>
 #include"Player.h"
 #include"Enemy.h"
+#include "GameBase/GameManager.h"
+#include "Support/CWindow.h"
+#include "Device/Input.h"
 
 
-// ƒvƒƒOƒ‰ƒ€‚Í WinMain ‚©‚çn‚Ü‚è‚Ü‚·
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+//ï¿½Öï¿½ï¿½vï¿½ï¿½ï¿½gï¿½^ï¿½Cï¿½vï¿½éŒ¾
+bool initialize();  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+void gameUpdate();	//ï¿½ï¿½ï¿½[ï¿½vï¿½ï¿½ï¿½ï¿½
+void release();		//ï¿½ï¿½ï¿½ï¿½
+
+//ï¿½Oï¿½ï¿½ï¿½[ï¿½oï¿½ï¿½ï¿½Ïï¿½
+Input* input;
+
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+bool initialize()
 {
-	//ƒƒ‚ƒŠƒŠ[ƒNŒŸo
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½Nï¿½ï¿½ï¿½o
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	CWindow::createInstance();               //ï¿½Rï¿½ï¿½ï¿½\ï¿½[ï¿½ï¿½ï¿½Eï¿½Bï¿½ï¿½ï¿½hï¿½Eï¿½Ìï¿½ï¿½ï¿½
+	CWindow::getInstance().showConsole();	 //ï¿½Rï¿½ï¿½ï¿½\ï¿½[ï¿½ï¿½ï¿½Eï¿½Bï¿½ï¿½ï¿½hï¿½Eï¿½Ì•\ï¿½ï¿½
 
-
-	//ƒeƒXƒgƒRƒ~ƒbƒg
-
-	//	Windowƒ‚[ƒh‚Ìİ’è‚ÆWindowƒ^ƒCƒgƒ‹‚ğİ’è‚·‚é
+	//	Windowï¿½ï¿½ï¿½[ï¿½hï¿½Ìİ’ï¿½ï¿½ï¿½Windowï¿½^ï¿½Cï¿½gï¿½ï¿½ï¿½ï¿½ï¿½İ’è‚·ï¿½ï¿½
 	ChangeWindowMode(true);
 	SetMainWindowText("game16");
 
-	//éŒ¾i‰¼j
-	
-	//	‰æ–ÊƒTƒCƒY‚ğİ’è
-	SetGraphMode(800, 600, 16);
-	if (DxLib_Init() == -1)	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»ˆ—
-	{
-		return -1;				// ƒGƒ‰[‚ª‹N‚«‚½‚ç’¼‚¿‚ÉI—¹
-	}
+	//	ï¿½ï¿½ï¿½ÊƒTï¿½Cï¿½Yï¿½ï¿½ï¿½İ’ï¿½
+	SetGraphMode(840, 640, 16);
+	// ï¿½cï¿½wï¿½ï¿½ï¿½Cï¿½uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	if (DxLib_Init() == -1)	return false;    // ï¿½Gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ç’¼ï¿½ï¿½ï¿½ÉIï¿½ï¿½
 
-	
-	//	•`‰ææ‚ğw’è
+	//	ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wï¿½ï¿½
 	SetDrawScreen(DX_SCREEN_BACK);
+	//	ï¿½ï¿½ï¿½Ê”wï¿½iï¿½ÌFï¿½ï¿½ï¿½İ’è‚·ï¿½ï¿½
 
-	//	‰æ–Ê”wŒi‚ÌF‚ğİ’è‚·‚é
-	SetBackgroundColor(0, 255, 100);
+	SetBackgroundColor(100, 100, 2);
 
 
-	
-	DxLib_End();            // ‚c‚wƒ‰ƒCƒuƒ‰ƒŠg—p‚ÌI—¹ˆ—
+	GameManager::createInstance();           //ï¿½Qï¿½[ï¿½ï¿½ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[ï¿½ğ¶ï¿½
+	GameManager::getInstance().initialize(); //ï¿½Qï¿½[ï¿½ï¿½ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	input = new Input();                     //inputï¿½ï¿½new
+	input->init();                           //inputï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½
 
-	return 0;               // ƒ\ƒtƒg‚ÌI—¹ 
+	return true;
+}
+
+//ï¿½ï¿½ï¿½[ï¿½vï¿½ï¿½ï¿½ï¿½
+void gameUpdate()
+{
+
+	while (ProcessMessage() == 0)
+	{
+		//ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		if (input->isKeyDown(KEYCORD::ESCAPE))
+			return;
+
+		//ï¿½wï¿½iï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½A
+		ClearDrawScreen();
+		input->update();                       //ï¿½Xï¿½V
+		GameManager::getInstance().update();   //ï¿½Xï¿½V
+	}
+}
+//ï¿½ï¿½ï¿½ï¿½
+void release()
+{
+	delete input;
+}
+// ï¿½vï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ WinMain ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½Ü‚ï¿½ï¿½Ü‚ï¿½
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+{
+	if (!initialize()) return -1;    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ÎIï¿½ï¿½
+
+	gameUpdate();                    //ï¿½Qï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½v
+
+	DxLib_End();                     // ï¿½cï¿½wï¿½ï¿½ï¿½Cï¿½uï¿½ï¿½ï¿½ï¿½ï¿½gï¿½pï¿½ÌIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	release();                       //ï¿½ï¿½ï¿½ï¿½
+	return 0;                        // ï¿½\ï¿½tï¿½gï¿½ÌIï¿½ï¿½
 }

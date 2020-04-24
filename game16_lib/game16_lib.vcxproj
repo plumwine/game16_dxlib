@@ -158,19 +158,32 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Scene\Ending.cpp" />
+    <ClCompile Include="GameBase\GameManager.cpp" />
+    <ClCompile Include="Scene\GamePlay.cpp" />
+    <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Support\CWindow.cpp" />
     <ClCompile Include="Device\Input.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Vector3.cpp" />
+    <ClCompile Include="Math\Vector3.cpp" />
+    <ClCompile Include="Scene\Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Scene\Ending.h" />
+    <ClInclude Include="GameBase\GameManager.h" />
+    <ClInclude Include="Scene\GamePlay.h" />
+    <ClInclude Include="Scene\BaseScene.h" />
+    <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Support\CWindow.h" />
     <ClInclude Include="Device\Input.h" />
-    <ClInclude Include="Singleton.h" />
-    <ClInclude Include="Vector3.h" />
+    <ClInclude Include="GamePlayManager.h" />
+    <ClInclude Include="Support\Singleton.h" />
+    <ClInclude Include="Math\Vector3.h" />
+    <ClInclude Include="GameBase\WindowInfo.h" />
+    <ClInclude Include="Scene\Title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

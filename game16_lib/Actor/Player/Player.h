@@ -1,10 +1,10 @@
 #pragma once
 #include"DxLib.h"
-#include "Vector3.h"
+#include "../../Math/Vector2.h"
 class Player
 {
 public:
-	Player(Vector3 pos);
+	Player(Vector2 pos);
 	~Player();
 	void Init();
 	void Update();
@@ -12,7 +12,7 @@ public:
 	void Change();
 
 private:
-	Vector3 playerPos;
+	Vector2 playerPos;
 	bool MoveFlag;
 	//ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
 	int playerM;

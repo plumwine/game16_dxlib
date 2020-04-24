@@ -1,18 +1,18 @@
 #pragma once
 #include"DxLib.h"
-#include"Vector3.h"
+#include "../../Math/Vector2.h"
 
 class Bullet
 {
 public:
-	Bullet(Vector3 pos);
+	Bullet(Vector2 pos);
 	~Bullet();
 	void Init();
 	void Update();
 	void Render();
 
 private:
-	Vector3 bulletPos;
+	Vector2 bulletPos;
 	bool Death;
 	//ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
 	int bulletM;

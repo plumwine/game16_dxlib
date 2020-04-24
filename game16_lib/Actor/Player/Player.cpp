@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(Vector3 pos)
+Player::Player(Vector2 pos)
 {
 }
 
@@ -11,7 +11,7 @@ Player::~Player()
 void Player::Init()
 {
 	playerM = LoadGraph("img\\F4.png");
-	playerPos = Vector3(400, 500, 0);
+	playerPos = Vector2(400, 500);
 	MoveFlag = FALSE;
 
 }
@@ -28,7 +28,7 @@ void Player::Update()
 	if (!MoveFlag)
 	{
 
-		Vector3 Velocity = Vector3(0, 0, 0);
+		Vector2 Velocity = Vector2(0, 0);
 
 		if (key&PAD_INPUT_UP)
 		{

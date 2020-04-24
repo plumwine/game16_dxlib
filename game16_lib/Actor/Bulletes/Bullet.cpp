@@ -1,6 +1,6 @@
 #include "Bullet.h"
 
-Bullet::Bullet(Vector3 pos)
+Bullet::Bullet(Vector2 pos)
 {
 }
 

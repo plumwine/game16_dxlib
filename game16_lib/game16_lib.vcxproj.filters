@@ -1,8 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Device\Input.cpp" />
+
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="GamePlayManager.cpp" />
     <ClCompile Include="Support\CWindow.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
@@ -14,6 +18,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device\Input.h" />
+
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="GamePlayManager.h" />
     <ClInclude Include="Support\CWindow.h" />
     <ClInclude Include="Scene\SceneManager.h" />

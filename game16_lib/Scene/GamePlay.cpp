@@ -1,7 +1,5 @@
 #include "GamePlay.h"
 
-
-
 GamePlay::GamePlay()
 {
 }
@@ -18,19 +16,31 @@ void GamePlay::initialize()
 	input->init();            //input初期化
 	isSceneEnd = false;        //最初はfalse
 	CWindow::getInstance().log("今ゲームプレイに切り替わった");
+	player = new Player(Vector2(0,0));
+	player->Init();
+	enemy = new Enemy(Vector2(0, 0));
+	enemy->Init();
+
 }
 
 void GamePlay::update(float deltaTime)
 {
-	input->update();         //input更新
+	input->update();//input更新
+	player->Update();
+	enemy->Update();
+
+	player->Render();
+	enemy->Render();
 	if (input->isKeyDown(KEYCORD::Z))
 	{
 		isSceneEnd = true;    //Z押されたらシーン終了（今だけ）
 	}
+	SetBackgroundColor(0, 255, 255);
 }
 
 void GamePlay::draw()
 {
+	
 }
 
 void GamePlay::shutdown()

@@ -2,6 +2,9 @@
 #ifndef _GAMEPLAY_H_
 #define _GAMEPLAY_H_
 #include "BaseScene.h"
+#include"../Actor/Player/Player.h"
+#include "../Actor/Enemies/Enemy.h"
+
 
 class GamePlay : public BaseScene
 {
@@ -16,6 +19,8 @@ public:
 	virtual bool isEnd() override;
 	virtual std::string nextScene() override;
 private:
+	Player *player;
+	Enemy *enemy;
 
 };
 

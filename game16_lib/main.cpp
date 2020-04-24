@@ -1,7 +1,6 @@
 #include "DxLib.h"
 #include <crtdbg.h>
-#include"Player.h"
-#include"Enemy.h"
+
 #include "GameBase/GameManager.h"
 #include "Support/CWindow.h"
 #include "Device/Input.h"
@@ -28,7 +27,7 @@ bool initialize()
 	SetMainWindowText("game16");
 
 	//	���ʃT�C�Y���ݒ�
-	SetGraphMode(840, 640, 16);
+	SetGraphMode(800, 800, 16);
 	// �c�w���C�u��������������
 	if (DxLib_Init() == -1)	return false;    // �G���[���N�����璼���ɏI��
 
@@ -61,6 +60,8 @@ void gameUpdate()
 		ClearDrawScreen();
 		input->update();                       //�X�V
 		GameManager::getInstance().update();   //�X�V
+		//	バックバッファの内容を画面に表示
+		ScreenFlip();
 	}
 }
 //����

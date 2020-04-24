@@ -1,4 +1,5 @@
 #include "Title.h"
+#include"DxLib.h"
 
 
 //コンストラクタ
@@ -27,7 +28,7 @@ void Title::update(float deltaTime)
 	{
 		isSceneEnd = true;    //Z押されたらシーン終了（今だけ）
 	}
-
+	
 }
 //描画
 void Title::draw()

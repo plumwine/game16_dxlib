@@ -1,5 +1,6 @@
 #include "DxLib.h"
 #include <crtdbg.h>
+
 #include "GameBase/GameManager.h"
 #include "Support/CWindow.h"
 #include "Device/Input.h"
@@ -26,11 +27,7 @@ bool initialize()
 
 	SetGraphMode(840, 640, 16);
 	if (DxLib_Init() == -1)	return false;
-
-
 	SetBackgroundColor(0, 50, 50);
-
-
 	GameManager::createInstance();           
 	GameManager::getInstance().initialize(); 
 	input = new Input();                     
@@ -48,7 +45,7 @@ void gameUpdate()
 		ClearDrawScreen();
 		if (input->isKeyDown(KEYCORD::ESCAPE))
 			return;
-		
+    
 		input->update();
 		GameManager::getInstance().update();
 		ScreenFlip();

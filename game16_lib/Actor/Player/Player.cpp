@@ -1,26 +1,32 @@
 #include "Player.h"
 
+
+
 Player::Player(Vector2 pos)
 {
 }
 
 Player::~Player()
 {
+	delete input;
 }
 
 void Player::Init()
 {
+	
 	playerM = LoadGraph("img\\F4.png");
 	playerPos = Vector2(400, 500);
 	MoveFlag = FALSE;
-
+	input = new Input;
+	input->init();
+	rend = new Renderer;
 }
 
 void Player::Update()
 {
-	int key = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-
-	if (key&PAD_INPUT_1)//ZƒL[
+	
+	input->update();
+	if (input->isKeyDown(KEYCORD::X))
 	{
 		Change();
 	}
@@ -30,19 +36,19 @@ void Player::Update()
 
 		Vector2 Velocity = Vector2(0, 0);
 
-		if (key&PAD_INPUT_UP)
+		if (input->isKeyDown(KEYCORD::ARROW_UP))
 		{
 			Velocity.y -= 4;
 		}
-		if (key&PAD_INPUT_DOWN)
+		if (input->isKeyDown(KEYCORD::ARROW_DOWN))
 		{
 			Velocity.y += 4;
 		}
-		if (key&PAD_INPUT_RIGHT)
+		if (input->isKeyDown(KEYCORD::ARROW_RIGHT))
 		{
 			Velocity.x += 4;
 		}
-		if (key&PAD_INPUT_LEFT)
+		if (input->isKeyDown(KEYCORD::ARROW_LEFT))
 		{
 			Velocity.x -= 4;
 		}
@@ -56,6 +62,7 @@ void Player::Update()
 void Player::Render()
 {
 	DrawRotaGraph(playerPos.x, playerPos.y, 1.0f, 0, playerM, TRUE,FALSE);
+	//rend->draw2D("img\\F4.png",Vector2(playerPos.x,playerPos.y),Vector2(64,64),Vector2(64,64),TRUE,FALSE);
 }
 
 void Player::Change()

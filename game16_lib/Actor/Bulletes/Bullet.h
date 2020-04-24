@@ -10,9 +10,10 @@ public:
 	void Init();
 	void Update();
 	void Render();
-
+	Vector2 BulletPos() { return bulletPos; }
 private:
 	Vector2 bulletPos;
+	Vector2 bulletVel;//ˆÚ“®—Ê
 	bool Death;
 	//ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
 	int bulletM;

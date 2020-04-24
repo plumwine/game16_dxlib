@@ -1,6 +1,9 @@
 #pragma once
 #include"DxLib.h"
 #include "../../Math/Vector2.h"
+#include "../../Device/Input.h"
+#include"../../Device/Renderer.h"
+
 class Player
 {
 public:
@@ -14,6 +17,8 @@ public:
 private:
 	Vector2 playerPos;
 	bool MoveFlag;
+	Input* input;
+	Renderer* rend;
 	//ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
 	int playerM;
 };

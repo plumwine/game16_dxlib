@@ -7,6 +7,7 @@ Enemy::Enemy(Vector2 pos)
 
 Enemy::~Enemy()
 {
+	delete input;
 }
 
 void Enemy::Init()
@@ -14,12 +15,16 @@ void Enemy::Init()
 	enemyM = LoadGraph("img\\TankATKR.png");
 	enemyPos = Vector2(400,100);
 	MoveFlag = FALSE;
+	input = new Input;
+	input->init();
+	rend = new Renderer;
+
 }
 
 void Enemy::Update()
 {
-	int key = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-	if (key&PAD_INPUT_1)//ZƒL[
+	
+	if (input->isKeyDown(KEYCORD::X))
 	{
 		Change();
 	}
@@ -30,23 +35,22 @@ void Enemy::Update()
 
 		Vector2 Velocity = Vector2(0, 0);
 
-		if (key&PAD_INPUT_UP)
+		if (input->isKeyDown(KEYCORD::ARROW_UP))
 		{
 			Velocity.y -= 4;
 		}
-		if (key&PAD_INPUT_DOWN)
+		if (input->isKeyDown(KEYCORD::ARROW_DOWN))
 		{
 			Velocity.y += 4;
 		}
-		if (key&PAD_INPUT_RIGHT)
+		if (input->isKeyDown(KEYCORD::ARROW_RIGHT))
 		{
 			Velocity.x += 4;
 		}
-		if (key&PAD_INPUT_LEFT)
+		if (input->isKeyDown(KEYCORD::ARROW_LEFT))
 		{
 			Velocity.x -= 4;
 		}
-
 		enemyPos += Velocity;
 	
 	}
@@ -55,6 +59,7 @@ void Enemy::Update()
 void Enemy::Render()
 {
 	DrawRotaGraph(enemyPos.x, enemyPos.y, 1.0f, 180/180.0f*DX_PI_F, enemyM, TRUE, FALSE);
+	//rend->draw2D("img\\TankATKR.png", Vector2(enemyPos.x, enemyPos.y), Vector2(1, 1), Vector2(1, 1), true, false);
 }
 
 void Enemy::Change()

@@ -1,6 +1,8 @@
 #pragma once
 #include "DxLib.h"
 #include "../../Math/Vector2.h"
+#include "../../Device/Input.h"
+#include"../../Device/Renderer.h"
 
 class Enemy
 {
@@ -14,6 +16,8 @@ public:
 private:
 	Vector2 enemyPos;
 	bool MoveFlag;
+	Input* input;
+	Renderer* rend;
 	//ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
 	int enemyM;
 };

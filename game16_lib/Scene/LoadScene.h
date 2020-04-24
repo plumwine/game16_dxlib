@@ -1,21 +1,21 @@
 #pragma once
-#ifndef _ENDING_H_
-#define _ENDING_H_
+#ifndef _LOADSCENE_H_
+#define _LOADSCENE_H_
 #include "BaseScene.h"
 
-class Ending : public BaseScene
+//ì«Ç›çûÇ›Ç∑ÇÈÉNÉâÉX
+class LoadScene : public BaseScene
 {
 public:
-	Ending();
-	~Ending();
+	LoadScene();
+	~LoadScene();
 	virtual void initialize() override;
 	virtual void update(float deltaTime) override;
 	virtual void draw(Renderer* renderer) override;
 	virtual void shutdown() override;
 	virtual bool isEnd() override;
 	virtual std::string nextScene() override;
-private:
-
 };
 
-#endif // !_ENDING_H
+#endif // !_LOADSCENE_H_
+

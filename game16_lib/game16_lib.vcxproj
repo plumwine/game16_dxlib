@@ -155,10 +155,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor\CharaManager\BaseObject.cpp" />
+    <ClCompile Include="Actor\CharaManager\CharactorManager.cpp" />
     <ClCompile Include="Device\Renderer.cpp" />
     <ClCompile Include="Actor\Bulletes\Bullet.cpp" />
     <ClCompile Include="Actor\Enemies\Enemy.cpp" />
     <ClCompile Include="Actor\Player\Player.cpp" />
+    <ClCompile Include="Scene\LoadScene.cpp" />
     <ClCompile Include="Scene\Ending.cpp" />
     <ClCompile Include="GameBase\GameManager.cpp" />
     <ClCompile Include="Scene\GamePlay.cpp" />
@@ -172,10 +175,13 @@
     <ClCompile Include="Device\Loader\TextuerLoad.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actor\CharaManager\BaseObject.h" />
+    <ClInclude Include="Actor\CharaManager\CharactorManager.h" />
     <ClInclude Include="Device\Renderer.h" />
     <ClInclude Include="Actor\Bulletes\Bullet.h" />
     <ClInclude Include="Actor\Enemies\Enemy.h" />
     <ClInclude Include="Actor\Player\Player.h" />
+    <ClInclude Include="Scene\LoadScene.h" />
     <ClInclude Include="Scene\Ending.h" />
     <ClInclude Include="GameBase\GameManager.h" />
     <ClInclude Include="Scene\GamePlay.h" />

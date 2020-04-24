@@ -7,15 +7,15 @@ GamePlay::GamePlay()
 
 GamePlay::~GamePlay()
 {
-	delete input;
+	delete m_pInput;
 }
 
 void GamePlay::initialize()
 {
-	input = new Input;
-	input->init();            //input‰Šú‰»
-	isSceneEnd = false;        //Å‰‚Ífalse
-	CWindow::getInstance().log("¡ƒQ[ƒ€ƒvƒŒƒC‚ÉØ‚è‘Ö‚í‚Á‚½");
+	m_pInput = new Input;
+	m_pInput->init();          //inputåˆæœŸåŒ–
+	isSceneEnd = false;        //æœ€åˆã¯false
+	CWindow::getInstance().log("ä»Šã‚²ãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ã«åˆ‡ã‚Šæ›¿ã‚ã£ãŸ");
 	player = new Player(Vector2(0,0));
 	player->Init();
 	enemy = new Enemy(Vector2(0, 0));
@@ -25,20 +25,20 @@ void GamePlay::initialize()
 
 void GamePlay::update(float deltaTime)
 {
-	input->update();//inputXV
 	player->Update();
 	enemy->Update();
 
 	player->Render();
 	enemy->Render();
-	if (input->isKeyDown(KEYCORD::Z))
+	m_pInput->update();         //inputæ›´æ–°
+	if (m_pInput->isKeyDown(KEYCORD::Z))
 	{
-		isSceneEnd = true;    //Z‰Ÿ‚³‚ê‚½‚çƒV[ƒ“I—¹i¡‚¾‚¯j
+		isSceneEnd = true;    //ZæŠ¼ã•ã‚ŒãŸã‚‰ã‚·ãƒ¼ãƒ³çµ‚äº†ï¼ˆä»Šã ã‘ï¼‰
 	}
 	SetBackgroundColor(0, 255, 255);
 }
 
-void GamePlay::draw()
+void GamePlay::draw(Renderer* renderer)
 {
 	
 }
@@ -46,12 +46,12 @@ void GamePlay::draw()
 void GamePlay::shutdown()
 {
 }
-//ƒV[ƒ“‚ğI‚¦‚é
+//ã‚·ãƒ¼ãƒ³ã‚’çµ‚ãˆã‚‹
 bool GamePlay::isEnd()
 {
 	return isSceneEnd;
 }
-//Ÿ‚ÌƒV[ƒ“iŒëš‚É‚Í‹C‚¨•t‚¯‚éj
+//æ¬¡ã®ã‚·ãƒ¼ãƒ³ï¼ˆèª¤å­—ã«ã¯æ°—ãŠä»˜ã‘ã‚‹ï¼‰
 std::string GamePlay::nextScene()
 {
 	return "ending";

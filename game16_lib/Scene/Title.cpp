@@ -1,49 +1,51 @@
 #include "Title.h"
 #include"DxLib.h"
 
+#include "../Device/Loader/TextuerLoad.h"
 
-//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 Title::Title()
 {
 }
 
-//ƒfƒXƒXƒgƒ‰ƒNƒ^
+//ãƒ‡ã‚¹ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 Title::~Title()
 {
-	delete input;
+	delete m_pInput;
 }
-//‰Šú‰»
+//åˆæœŸåŒ–
 void Title::initialize()
 {
-	input = new Input;
-	input->init();            //input‰Šú‰»
-	isSceneEnd = false;       //Å‰‚Ífalse
-	CWindow::getInstance().log("¡ƒ^ƒCƒgƒ‹‚ÉØ‚è‘Ö‚í‚Á‚½");
+	m_pInput = new Input;
+	m_pInput->init();         //inputåˆæœŸåŒ–
+	isSceneEnd = false;       //æœ€åˆã¯false
+	CWindow::getInstance().log("ä»Šã‚¿ã‚¤ãƒˆãƒ«ã«åˆ‡ã‚Šæ›¿ã‚ã£ãŸ");
 }
-//XV
+//æ›´æ–°
 void Title::update(float deltaTime)
 {
-	input->update();         //inputXV
-	if (input->isKeyDown(KEYCORD::Z))
+	m_pInput->update();         //inputæ›´æ–°
+	if (m_pInput->isKeyDown(KEYCORD::Z))
 	{
-		isSceneEnd = true;    //Z‰Ÿ‚³‚ê‚½‚çƒV[ƒ“I—¹i¡‚¾‚¯j
+		isSceneEnd = true;    //ZæŠ¼ã•ã‚ŒãŸã‚‰ã‚·ãƒ¼ãƒ³çµ‚äº†ï¼ˆä»Šã ã‘ï¼‰
 	}
 	
 }
-//•`‰æ
-void Title::draw()
+//æç”»
+void Title::draw(Renderer* renderer)
 {
+	renderer->draw2D("tank", Vector2(200, 200), Vector2(0,0), Vector2(64,64));
 }
-//I—¹ˆ—
+//çµ‚äº†å‡¦ç†
 void Title::shutdown()
 {
 }
-//ƒV[ƒ“‚ªI‚í‚Á‚½‚©‚Ç‚¤‚©
+//ã‚·ãƒ¼ãƒ³ãŒçµ‚ã‚ã£ãŸã‹ã©ã†ã‹
 bool Title::isEnd()
 {
 	return isSceneEnd;
 }
-//Ÿ‚ÌƒV[ƒ“
+//æ¬¡ã®ã‚·ãƒ¼ãƒ³
 std::string Title::nextScene()
 {
 	return "gameplay";

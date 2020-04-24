@@ -17,6 +17,8 @@
     <ClCompile Include="Actor\Bulletes\Bullet.cpp" />
     <ClCompile Include="Actor\Enemies\Enemy.cpp" />
     <ClCompile Include="Scene\LoadScene.cpp" />
+    <ClCompile Include="Actor\CharaManager\BaseObject.cpp" />
+    <ClCompile Include="Actor\CharaManager\CharactorManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device\Input.h" />
@@ -37,5 +39,7 @@
     <ClInclude Include="Actor\Bulletes\Bullet.h" />
     <ClInclude Include="Actor\Enemies\Enemy.h" />
     <ClInclude Include="Scene\LoadScene.h" />
+    <ClInclude Include="Actor\CharaManager\CharactorManager.h" />
+    <ClInclude Include="Actor\CharaManager\BaseObject.h" />
   </ItemGroup>
 </Project>

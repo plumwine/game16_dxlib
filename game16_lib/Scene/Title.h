@@ -16,7 +16,6 @@ public:
 	virtual bool isEnd() override;
 	virtual std::string nextScene() override;
 private:
-	int a;
 };
 
 #endif // !_TITLE_H

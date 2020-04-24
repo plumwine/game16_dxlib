@@ -5,7 +5,7 @@
 #include "../Device/Input.h"
 #include "../Support/CWindow.h"
 #include "../Device/Renderer.h"
-//シーンの基底クラス(abstract)   実装はない
+//シーンの基底クラス
 class BaseScene
 {
 public:

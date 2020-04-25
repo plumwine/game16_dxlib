@@ -19,6 +19,8 @@
     <ClCompile Include="Scene\LoadScene.cpp" />
     <ClCompile Include="Actor\CharaManager\BaseObject.cpp" />
     <ClCompile Include="Actor\CharaManager\CharactorManager.cpp" />
+    <ClCompile Include="GameBase\GameTime.cpp" />
+    <ClCompile Include="Utility\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device\Input.h" />
@@ -41,5 +43,7 @@
     <ClInclude Include="Scene\LoadScene.h" />
     <ClInclude Include="Actor\CharaManager\CharactorManager.h" />
     <ClInclude Include="Actor\CharaManager\BaseObject.h" />
+    <ClInclude Include="GameBase\GameTime.h" />
+    <ClInclude Include="Utility\Timer.h" />
   </ItemGroup>
 </Project>

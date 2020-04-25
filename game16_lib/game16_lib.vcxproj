@@ -161,6 +161,7 @@
     <ClCompile Include="Actor\Bulletes\Bullet.cpp" />
     <ClCompile Include="Actor\Enemies\Enemy.cpp" />
     <ClCompile Include="Actor\Player\Player.cpp" />
+    <ClCompile Include="GameBase\GameTime.cpp" />
     <ClCompile Include="Scene\LoadScene.cpp" />
     <ClCompile Include="Scene\Ending.cpp" />
     <ClCompile Include="GameBase\GameManager.cpp" />
@@ -173,6 +174,7 @@
     <ClCompile Include="Scene\Title.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
     <ClCompile Include="Device\Loader\TextuerLoad.cpp" />
+    <ClCompile Include="Utility\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\CharaManager\BaseObject.h" />
@@ -181,6 +183,7 @@
     <ClInclude Include="Actor\Bulletes\Bullet.h" />
     <ClInclude Include="Actor\Enemies\Enemy.h" />
     <ClInclude Include="Actor\Player\Player.h" />
+    <ClInclude Include="GameBase\GameTime.h" />
     <ClInclude Include="Scene\LoadScene.h" />
     <ClInclude Include="Scene\Ending.h" />
     <ClInclude Include="GameBase\GameManager.h" />
@@ -195,6 +198,7 @@
     <ClInclude Include="Scene\Title.h" />
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Device\Loader\TextuerLoad.h" />
+    <ClInclude Include="Utility\Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

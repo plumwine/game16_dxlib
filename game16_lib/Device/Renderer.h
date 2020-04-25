@@ -17,6 +17,11 @@ public:
 		Vector2 textureSize,
 		bool isTransparency = true,
 		bool isTurn = false);
+	//textureName :テクスチャの名前　position :座標　number：数字　桁数
+	void drawNumber(std::string textureName,Vector2 position,double number,unsigned int digits);
+private:
+	const int mNumTexture_Width = 24;     //数字画像の横幅
+	const int mNumTexture_Height = 40;    //数字画像の縦幅
 
 };
 

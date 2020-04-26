@@ -15,12 +15,14 @@ void GamePlay::initialize()
 	m_pInput = new Input;
 	m_pInput->init();          //input初期化
 	isSceneEnd = false;        //最初はfalse
-	CWindow::getInstance().log("今ゲームプレイに切り替わった");
+	
 	player = new Player(Vector2(0,0));
 	player->Init();
 	enemy = new Enemy(Vector2(0, 0));
 	enemy->Init();
+	
 
+	//CWindow::getInstance().log("今ゲームプレイに切り替わった");
 }
 
 void GamePlay::update(float deltaTime)
@@ -30,6 +32,8 @@ void GamePlay::update(float deltaTime)
 
 	player->Render();
 	enemy->Render();
+
+	
 	m_pInput->update();         //input更新
 	if (m_pInput->isKeyDown(KEYCORD::Z))
 	{

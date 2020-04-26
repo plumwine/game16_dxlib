@@ -13,13 +13,12 @@ Player::~Player()
 
 void Player::Init()
 {
-	
-	playerM = LoadGraph("img\\F4.png");
 	playerPos = Vector2(400, 500);
 	MoveFlag = FALSE;
 	input = new Input;
 	input->init();
 	rend = new Renderer;
+	
 }
 
 void Player::Update()
@@ -36,21 +35,25 @@ void Player::Update()
 
 		Vector2 Velocity = Vector2(0, 0);
 
-		if (input->isKeyDown(KEYCORD::ARROW_UP))
+		if (input->isKeyState(KEYCORD::ARROW_UP))
 		{
 			Velocity.y -= 4;
 		}
-		if (input->isKeyDown(KEYCORD::ARROW_DOWN))
+		if (input->isKeyState(KEYCORD::ARROW_DOWN))
 		{
 			Velocity.y += 4;
 		}
-		if (input->isKeyDown(KEYCORD::ARROW_RIGHT))
+		if (input->isKeyState(KEYCORD::ARROW_RIGHT))
 		{
 			Velocity.x += 4;
 		}
-		if (input->isKeyDown(KEYCORD::ARROW_LEFT))
+		if (input->isKeyState(KEYCORD::ARROW_LEFT))
 		{
 			Velocity.x -= 4;
+		}
+		if (input->isKeyDown(KEYCORD::SPACE))
+		{
+			Shot(Vector2( playerPos.x,playerPos.y));
 		}
 
 		playerPos += Velocity;
@@ -61,8 +64,9 @@ void Player::Update()
 
 void Player::Render()
 {
-	DrawRotaGraph(playerPos.x, playerPos.y, 1.0f, 0, playerM, TRUE,FALSE);
-	//rend->draw2D("img\\F4.png",Vector2(playerPos.x,playerPos.y),Vector2(64,64),Vector2(64,64),TRUE,FALSE);
+	//bullet->draw();
+	rend->draw2D("player",Vector2(playerPos.x,playerPos.y),Vector2(0,0),Vector2(64,64));
+	
 }
 
 void Player::Change()
@@ -75,4 +79,11 @@ void Player::Change()
 	{
 		MoveFlag = TRUE;
 	}
+}
+
+void Player::Shot(Vector2 pos)
+{
+	
+	bullet->update(0);
+	CWindow::getInstance().log("”­ŽË");
 }

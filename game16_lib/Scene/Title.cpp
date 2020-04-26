@@ -19,7 +19,7 @@ void Title::initialize()
 	m_pInput = new Input;
 	m_pInput->init();         //input初期化
 	isSceneEnd = false;       //最初はfalse
-	CWindow::getInstance().log("今タイトルに切り替わった");
+	//CWindow::getInstance().log("今タイトルに切り替わった");
 }
 //更新
 void Title::update(float deltaTime)

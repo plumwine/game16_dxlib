@@ -1,4 +1,5 @@
 #include "GameManager.h"
+#include "GameTime.h"
 #include "../Scene/SceneManager.h"
 #include "../Scene/Title.h"
 #include "../Scene/GamePlay.h"
@@ -35,6 +36,6 @@ void GameManager::sceneInitialize()
 void GameManager::update()
 {
 	//シーンマネージャーの更新処理
-	SceneManager::getInstance().update(0);  //とりあえず更新
+	SceneManager::getInstance().update(GameTime::getInstance().getDeltaTime());  //とりあえず更新
 	SceneManager::getInstance().draw(m_pRenderer);
 }

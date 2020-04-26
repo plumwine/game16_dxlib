@@ -2,22 +2,30 @@
 
 Bullet::Bullet(Vector2 pos)
 {
-	bulletVel = Vector2(0, 6);
+	bulletPos = Vector2(pos);
 }
 
 Bullet::~Bullet()
 {
+	
 }
 
-void Bullet::Init()
+void Bullet::initialize()
 {
-
+	
 }
 
-void Bullet::Update()
+void Bullet::update(float deltaTime)
 {
+	bulletVel.y -= 6;
+	bulletPos += bulletVel;
 }
 
-void Bullet::Render()
+void Bullet::draw(Renderer & renderer)
+{
+	rend->draw2D("bullet", Vector2(bulletPos.x, bulletPos.y), Vector2(0, 0), Vector2(64, 64));
+}
+
+void Bullet::hit(BaseObject & other)
 {
 }

@@ -3,19 +3,19 @@
 #define _BASEOBJECT_H_
 #include "../../Device/Renderer.h"
 #include "../../Math/Vector2.h"
-
+//物体のタイプ
+enum Type
+{
+	PLAYER,
+	ENEMY,
+	PLAYER_BULLET,
+	ENEMY_BULLET,
+};
 
 //描画するオブジェクトの基底クラス
 class BaseObject
 {
-	//物体のタイプ
-	enum Type
-	{
-		PLAYER,
-		ENEMY,
-		PLAYER_BULLET,
-		ENEMY_BULLET,
-	};
+	
 
 public:
 	BaseObject();

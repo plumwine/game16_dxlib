@@ -4,6 +4,7 @@
 #include "BaseScene.h"
 #include"../Actor/Player/Player.h"
 #include "../Actor/Enemies/Enemy.h"
+#include"../Actor/Bulletes/Bullet.h"
 
 
 class GamePlay : public BaseScene
@@ -21,7 +22,7 @@ public:
 private:
 	Player *player;
 	Enemy *enemy;
-
+	Bullet* bullet;
 };
 
 

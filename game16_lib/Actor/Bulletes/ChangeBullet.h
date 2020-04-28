@@ -4,14 +4,13 @@
 #include"../CharaManager/CharactorManager.h"
 #include"../../Device/Renderer.h"
 #include"../CharaManager/BaseObject.h"
-#include"../../Support/CWindow.h"
+#include"../../GameBase/WindowInfo.h"
 
-
-class Bullet:public BaseObject
+class ChangeBullet :public BaseObject
 {
 public:
-	Bullet(Vector2 pos,CharactorManager* c);
-	~Bullet();
+	ChangeBullet(Vector2 pos, CharactorManager* c);
+	~ChangeBullet();
 	//èâä˙âª
 	virtual void initialize()override;
 	//çXêV
@@ -30,8 +29,11 @@ public:
 	virtual float getCircleSize() const override;
 
 	virtual Type ChangeType()  override;
+
+
+
 private:
-	
+
 	float angle;
 	bool Death;
 	Renderer* rend;

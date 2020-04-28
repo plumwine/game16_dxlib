@@ -21,6 +21,7 @@
     <ClCompile Include="Actor\CharaManager\CharactorManager.cpp" />
     <ClCompile Include="GameBase\GameTime.cpp" />
     <ClCompile Include="Utility\Timer.cpp" />
+    <ClCompile Include="Actor\Bulletes\ChangeBullet.cpp" />
     <ClCompile Include="Actor\CharaManager\EnemySpawn.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +47,7 @@
     <ClInclude Include="Actor\CharaManager\BaseObject.h" />
     <ClInclude Include="GameBase\GameTime.h" />
     <ClInclude Include="Utility\Timer.h" />
+    <ClInclude Include="Actor\Bulletes\ChangeBullet.h" />
     <ClInclude Include="Actor\CharaManager\EnemySpawn.h" />
   </ItemGroup>
 </Project>

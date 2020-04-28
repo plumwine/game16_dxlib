@@ -19,8 +19,9 @@ void GamePlay::initialize()
 	isSceneEnd = false;   //最初はfalse
 	
 	charaManager->add(new Player(Vector2(0, 0), charaManager));
-	charaManager->add(new Enemy(Vector2(0, 0), charaManager));
-	
+	//charaManager->add(new Enemy(Vector2(0, 0), charaManager));
+	enemySpawn = new EnemySpawn(*charaManager);
+	enemySpawn->initialize();
 	
 	//CWindow::getInstance().log("今ゲームプレイに切り替わった");
 }
@@ -28,6 +29,8 @@ void GamePlay::initialize()
 void GamePlay::update(float deltaTime)
 {
 	charaManager->update(deltaTime);
+	enemySpawn->spawn();
+	enemySpawn->update(deltaTime);
 	m_pInput->update();         //input更新
 	if (m_pInput->isKeyDown(KEYCORD::Z))
 	{

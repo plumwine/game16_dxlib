@@ -1,7 +1,7 @@
 #include "Enemy.h"
 #include "../Player/Player.h"
 
-Enemy::Enemy(Vector2 pos,CharactorManager *c)
+Enemy::Enemy(Vector2 pos, CharactorManager *c)
 {
 	charaManager = c;
 }
@@ -17,7 +17,7 @@ Enemy::~Enemy()
 void Enemy::initialize()
 {
 	b_mHp = 100;
-	b_mPosittion = Vector2(500, 100);
+	b_mPosittion = Vector2(b_mPosittion.x,b_mPosittion.y);
 	MoveFlag = FALSE;
 	input = new Input;
 	input->init();
@@ -115,7 +115,7 @@ Type Enemy::getType() const
 
 Vector2 Enemy::getPpstion() const
 {
-	return Vector2();
+	return b_mPosittion;
 }
 
 float Enemy::getCircleSize() const

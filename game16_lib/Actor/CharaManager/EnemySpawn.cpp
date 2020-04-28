@@ -37,7 +37,7 @@ void EnemySpawn::spawn()
 
 		for (int i = 0; i < spawnNum(mt); i++)
 		{
-			mCharactorManager->add(new Enemy(Vector2((i + 1) * 100, 50)));
+			//mCharactorManager->add(new Enemy(Vector2((i + 1) * 100, 50)));
 		}
 
 	}

@@ -32,7 +32,7 @@ void Renderer::draw2D(std::string textureName, Vector2 position, Vector2 drawPos
 	float deg = angle * (180 / pi);
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha);  //ブレンドモードをαに設定
 	DrawRotaGraph3(
-		(int)position.x, (int)position.y,
+		(int)position.x + ((int)textureSize.x/2), (int)position.y + ((int)textureSize.y / 2),       //ここ注意！！バグる可能性大
 		(int)angleCenter.x, (int)angleCenter.y,
 		(double)scale.x, (double)scale.y,
 		(double)deg,

@@ -17,7 +17,7 @@ EnemySpawn::~EnemySpawn()
 
 void EnemySpawn::initialize()
 {
-	mTimer->initialize();  //ƒ^ƒCƒ}[‚ğ‰Šú‰»
+	mTimer->initialize();  //ã‚¿ã‚¤ãƒãƒ¼ã‚’åˆæœŸåŒ–
 }
 
 void EnemySpawn::update(float deltaTime)
@@ -27,17 +27,18 @@ void EnemySpawn::update(float deltaTime)
 
 void EnemySpawn::spawn()
 {
-	//5•b‚¨‚«‚É“G‚ª¶¬‚³‚ê‚é
+	//5ç§’ãŠãã«æ•µãŒç”Ÿæˆã•ã‚Œã‚‹
 	if (mTimer->timerSet(2))
 	{
-		//‹^——”‚É‰ŠúƒV[ƒh‚ğ—^‚¦‚é
+		//ç–‘ä¼¼ä¹±æ•°ã«åˆæœŸã‚·ãƒ¼ãƒ‰ã‚’ä¸ãˆã‚‹
 		std::mt19937 mt{ std::random_device{}() };
-		//ƒfƒBƒXƒgƒŠƒrƒ…[ƒVƒ‡ƒ“‚ğg‚Á‚Ä”ÍˆÍw’èi®”j
+		//ãƒ‡ã‚£ã‚¹ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ä½¿ã£ã¦ç¯„å›²æŒ‡å®šï¼ˆæ•´æ•°ï¼‰
 		std::uniform_int_distribution<int> spawnNum(1, 10);
 
 		for (int i = 0; i < spawnNum(mt); i++)
 		{
 			mCharactorManager->add(new Enemy(Vector2((i + 1) * 100, 50), mCharactorManager));
+
 		}
 
 	}

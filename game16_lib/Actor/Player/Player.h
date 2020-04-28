@@ -8,16 +8,19 @@
 #include<list>
 #include"../Bulletes/Bullet.h"
 #include"../../Actor/Enemies/Enemy.h"
+#include"../Bulletes/ChangeBullet.h"
 #include "../../Support/CWindow.h"
 
 class Player:public BaseObject
 {
+	//一番最初の操作キャラ、ボム使用時にこれに戻る
 public:
 	Player(Vector2 pos,CharactorManager *c);
 	~Player();
 
-	void Change();
+	
 	void Shot(Vector2 pos);
+	void CShot(Vector2 pos);
 
 
 	// BaseObject を介して継承されました
@@ -37,9 +40,7 @@ public:
 
 	virtual float getCircleSize() const override;
 
-	virtual void ChangePlayer(BaseObject& other) override;
-
-	
+	virtual Type ChangeType() override;
 	
 private:
 	
@@ -47,6 +48,10 @@ private:
 	Input* input;
 	Renderer* rend;
 	CharactorManager* charaManager;
+
+
+
+	
 
 
 };

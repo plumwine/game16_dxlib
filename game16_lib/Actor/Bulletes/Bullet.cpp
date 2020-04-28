@@ -15,7 +15,7 @@ Bullet::~Bullet()
 
 void Bullet::initialize()
 {
-	
+	b_mType = Type::PLAYER_BULLET;
 }
 
 void Bullet::update(float deltaTime)
@@ -67,6 +67,8 @@ float Bullet::getCircleSize() const
 	return b_mCircleSize;
 }
 
-void Bullet::ChangePlayer(BaseObject & other)
+Type Bullet::ChangeType()
 {
+	return Type();
 }
+

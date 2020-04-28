@@ -29,7 +29,7 @@ public:
 
 	virtual float getCircleSize() const override;
 
-	virtual void ChangePlayer(BaseObject& other) override;
+	virtual Type ChangeType()  override;
 private:
 	
 	float angle;

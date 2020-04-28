@@ -13,17 +13,6 @@ Player::~Player()
 	delete rend;
 }
 
-void Player::Change()
-{
-	b_mIsDeath = true;
-}
-
-void Player::Shot(Vector2 pos)
-{
-	charaManager->add(new Bullet(pos,charaManager));
-	CWindow::getInstance().log("”­ŽË");
-}
-
 void Player::initialize()
 {
 	b_mPosittion = Vector2(400, 500);
@@ -33,13 +22,15 @@ void Player::initialize()
 	rend = new Renderer;
 	b_mCircleSize = 32.0f;
 	b_mType = Type::PLAYER;
+	b_mHp = 100;
 }
 
 void Player::update(float deltaTime)
 {
-
+	
 	b_mVelocity = Vector2(0, 0);
 	input->update();
+
 	
 
 	if (b_mType == Type::PLAYER)
@@ -66,7 +57,10 @@ void Player::update(float deltaTime)
 			Shot(Vector2(b_mPosittion.x, b_mPosittion.y));
 		}
 		
-		
+		if (input->isKeyDown(KEYCORD::X))
+		{
+			CShot(Vector2(b_mPosittion.x, b_mPosittion.y));
+		}
 		b_mPosittion += b_mVelocity;
 		
 	}
@@ -86,12 +80,30 @@ void Player::draw(Renderer * renderer)
 	rend->draw2D("player", Vector2(b_mPosittion.x, b_mPosittion.y), Vector2(0, 0), Vector2(64, 64));
 }
 
+void Player::Shot(Vector2 pos)
+{
+	charaManager->add(new Bullet(pos, charaManager));
+	CWindow::getInstance().log("”­ŽË");
+}
+
+void Player::CShot(Vector2 pos)
+{
+	charaManager->add(new ChangeBullet(pos, charaManager));
+}
+
+
 void Player::hit(BaseObject & other)
 {
-	if (other.getType() == Type::ENEMY)
+	if (other.getType() == Type::ENEMY||other.getType()==Type::ENEMY_BULLET)
 	{
-		Change();
+		b_mHp -= 20;
+		DrawCircle(b_mPosittion.x + 64 / 2, b_mPosittion.y + 32, b_mCircleSize, GetColor(255, 255, 0), TRUE);
+		if (b_mHp <= 0)
+		{
+			b_mIsDeath = true;
+		}
 	}
+
 }
 
 bool Player::getIsDeath() const
@@ -114,10 +126,9 @@ float Player::getCircleSize() const
 	return b_mCircleSize;
 }
 
-void Player::ChangePlayer(BaseObject & other)
+Type Player::ChangeType()
 {
-
+	return b_mType;
 }
-
 
 

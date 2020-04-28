@@ -28,9 +28,6 @@ void GamePlay::initialize()
 void GamePlay::update(float deltaTime)
 {
 	charaManager->update(deltaTime);
-
-	
-	
 	m_pInput->update();         //input更新
 	if (m_pInput->isKeyDown(KEYCORD::Z))
 	{

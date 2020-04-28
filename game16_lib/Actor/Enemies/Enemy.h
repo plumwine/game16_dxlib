@@ -6,7 +6,7 @@
 #include"../CharaManager/BaseObject.h"
 #include"../CharaManager/CharactorManager.h"
 #include"../Player/Player.h"
-#include"../Bulletes/EBullet.h"
+
 
 class Enemy:public BaseObject
 {
@@ -24,6 +24,8 @@ public:
 
 	void Shot(Vector2 pos);
 
+	void CShot(Vector2 pos);
+
 	virtual bool getIsDeath() const override;
 
 	virtual Type getType() const override;
@@ -32,9 +34,11 @@ public:
 
 	virtual float getCircleSize() const override;
 
-	void Change();
+	virtual Type ChangeType() override;
 
-	virtual void ChangePlayer(BaseObject& other) override;
+
+
+	
 	
 private:
 	

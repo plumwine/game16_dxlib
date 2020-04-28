@@ -26,6 +26,9 @@ CharactorManager::~CharactorManager()
 	mObjectsList.clear();
 
 }
+
+
+
 //リストのクリア
 void CharactorManager::clear()
 {
@@ -77,9 +80,16 @@ void CharactorManager::objectsManager_update(float deltaTime)
 			{
 				object1->hit(*object2);
 				object2->hit(*object1);
+				//乗っ取り処理
+				if (object1->getType() == Type::CHANGE_BULLET &&object2->getType()==Type::ENEMY)
+				{				
+					ChangeAfter();
+					object2->ChangeType();
+				}
 			}
 		}
 	}
+	
 }
 //オブジェクトの削除更新
 void CharactorManager::removeList_update()
@@ -106,5 +116,18 @@ void CharactorManager::draw(Renderer * renderer)
 			object->draw(renderer);
 		else
 			continue;    
+	}
+}
+
+void CharactorManager::ChangeAfter()
+{
+	auto itr = mObjectsList.begin();
+	while (itr != mObjectsList.end())
+	{
+		//オブジェクトがnullか死んでいたら削除
+		if ((*itr)->getType()==Type::PLAYER)
+			itr = mObjectsList.erase(itr);
+		else
+			itr++;        //次へ
 	}
 }

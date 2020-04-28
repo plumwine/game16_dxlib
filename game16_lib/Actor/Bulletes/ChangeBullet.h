@@ -6,11 +6,11 @@
 #include"../CharaManager/BaseObject.h"
 #include"../../GameBase/WindowInfo.h"
 
-class EBullet :public BaseObject
+class ChangeBullet :public BaseObject
 {
 public:
-	EBullet(Vector2 pos, CharactorManager* c);
-	~EBullet();
+	ChangeBullet(Vector2 pos, CharactorManager* c);
+	~ChangeBullet();
 	//èâä˙âª
 	virtual void initialize()override;
 	//çXêV
@@ -28,7 +28,9 @@ public:
 
 	virtual float getCircleSize() const override;
 
-	virtual void ChangePlayer(BaseObject& other) override;
+	virtual Type ChangeType()  override;
+
+
 
 private:
 

@@ -4,29 +4,25 @@
 #include "../../Device/Input.h"
 #include"../../Device/Renderer.h"
 #include"../CharaManager/BaseObject.h"
+#include"../CharaManager/CharactorManager.h"
+#include"../Player/Player.h"
+#include"../Bulletes/EBullet.h"
 
 class Enemy:public BaseObject
 {
 public:
-	Enemy(Vector2 pos);
+	Enemy(Vector2 pos,CharactorManager *c);
 	~Enemy();
-
-	void Change();
-private:
-	Vector2 enemyPos;
-	bool MoveFlag;
-	Input* input;
-	Renderer* rend;
-	
-
 	// BaseObject ÇâÓÇµÇƒåpè≥Ç≥ÇÍÇ‹ÇµÇΩ
 	virtual void initialize() override;
 
 	virtual void update(float deltaTime) override;
 
-	virtual void draw(Renderer & renderer) override;
+	virtual void draw(Renderer * renderer) override;
 
 	virtual void hit(BaseObject & other) override;
+
+	void Shot(Vector2 pos);
 
 	virtual bool getIsDeath() const override;
 
@@ -36,4 +32,17 @@ private:
 
 	virtual float getCircleSize() const override;
 
+	void Change();
+
+	virtual void ChangePlayer(BaseObject& other) override;
+	
+private:
+	
+	bool MoveFlag;
+	Input* input;
+	Renderer* rend;
+	CharactorManager* charaManager;
+
+
+	
 };

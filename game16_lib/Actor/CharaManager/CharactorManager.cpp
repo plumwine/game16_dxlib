@@ -41,6 +41,9 @@ void CharactorManager::add(BaseObject * addObj)
 //XV
 void CharactorManager::update(float deltaTime)
 {
+	addList_update();
+	objectsManager_update(deltaTime);
+	removeList_update();
 }
 #pragma region update•ªŠ„
 
@@ -93,7 +96,7 @@ void CharactorManager::removeList_update()
 }
 #pragma endregion
 //•`‰æ
-void CharactorManager::draw(Renderer & renderer)
+void CharactorManager::draw(Renderer * renderer)
 {
 	for (auto object : mObjectsList)
 	{

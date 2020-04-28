@@ -12,39 +12,36 @@ GamePlay::~GamePlay()
 
 void GamePlay::initialize()
 {
+	charaManager = new CharactorManager();
+	charaManager->clear();
 	m_pInput = new Input;
 	m_pInput->init();          //input初期化
-	isSceneEnd = false;        //最初はfalse
+	isSceneEnd = false;   //最初はfalse
 	
-	player = new Player(Vector2(0,0));
-	player->Init();
-	enemy = new Enemy(Vector2(0, 0));
-	enemy->Init();
+	charaManager->add(new Player(Vector2(0, 0), charaManager));
+	charaManager->add(new Enemy(Vector2(0, 0), charaManager));
 	
-
+	
 	//CWindow::getInstance().log("今ゲームプレイに切り替わった");
 }
 
 void GamePlay::update(float deltaTime)
 {
-	player->Update();
-	enemy->Update();
+	charaManager->update(deltaTime);
 
-	player->Render();
-	enemy->Render();
-
+	
 	
 	m_pInput->update();         //input更新
 	if (m_pInput->isKeyDown(KEYCORD::Z))
 	{
 		isSceneEnd = true;    //Z押されたらシーン終了（今だけ）
 	}
-	SetBackgroundColor(0, 255, 255);
+	SetBackgroundColor(0, 0, 0);
 }
 
 void GamePlay::draw(Renderer* renderer)
 {
-	
+	charaManager->draw(renderer);
 }
 
 void GamePlay::shutdown()

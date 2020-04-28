@@ -4,6 +4,7 @@
 #include "BaseScene.h"
 #include"../Actor/Player/Player.h"
 #include "../Actor/Enemies/Enemy.h"
+#include"../Actor/CharaManager/EnemySpawn.h"
 #include"../Actor/CharaManager/CharactorManager.h"
 
 
@@ -20,9 +21,8 @@ public:
 	virtual bool isEnd() override;
 	virtual std::string nextScene() override;
 private:
-	Player *player;
-	Enemy *enemy;
 	CharactorManager *charaManager;
+	EnemySpawn *enemySpawn;
 };
 
 

@@ -28,7 +28,7 @@ void EnemySpawn::update(float deltaTime)
 void EnemySpawn::spawn()
 {
 	//5•b‚¨‚«‚É“G‚ª¶¬‚³‚ê‚é
-	if (mTimer->timerSet(5))
+	if (mTimer->timerSet(2))
 	{
 		//‹^——”‚É‰ŠúƒV[ƒh‚ğ—^‚¦‚é
 		std::mt19937 mt{ std::random_device{}() };
@@ -37,7 +37,7 @@ void EnemySpawn::spawn()
 
 		for (int i = 0; i < spawnNum(mt); i++)
 		{
-			mCharactorManager->add(new Enemy(Vector2((i + 1) * 100, 50)));
+			mCharactorManager->add(new Enemy(Vector2((i + 1) * 100, 50), mCharactorManager));
 		}
 
 	}

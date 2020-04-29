@@ -3,6 +3,7 @@
 #define _BASEOBJECT_H_
 #include "../../Device/Renderer.h"
 #include "../../Math/Vector2.h"
+#include"../../Utility/Timer.h"
 //物体のタイプ
 enum Type
 {
@@ -44,6 +45,8 @@ public:
 	//自分の半径
 	virtual float getCircleSize()const = 0;
 
+
+
 #pragma endregion
 
 	//円同士の当たり判定
@@ -59,6 +62,7 @@ protected:
 	bool b_mIsDeath;          //死んだかどうか
 	Type b_mType;             //自分のタイプ
 	float b_mAngle;//角度
+	bool b_mEndFlag;//ゲームオーバー
 };
 
 

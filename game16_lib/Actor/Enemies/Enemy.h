@@ -6,6 +6,7 @@
 #include"../CharaManager/BaseObject.h"
 #include"../CharaManager/CharactorManager.h"
 #include"../Player/Player.h"
+#include"../Bulletes/Bom.h"
 
 
 class Enemy:public BaseObject
@@ -25,6 +26,8 @@ public:
 	void Shot(Vector2 pos);
 
 	void CShot(Vector2 pos);
+
+	void Jibaku(Vector2 pos);
 
 	virtual bool getIsDeath() const override;
 
@@ -46,7 +49,7 @@ private:
 	Input* input;
 	Renderer* rend;
 	CharactorManager* charaManager;
-
+	Timer *mTimer;
 
 	
 };

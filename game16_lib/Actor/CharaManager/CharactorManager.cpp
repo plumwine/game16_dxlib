@@ -80,7 +80,7 @@ void CharactorManager::objectsManager_update(float deltaTime)
 			{
 				object1->hit(*object2);
 				object2->hit(*object1);
-				//æ‚ÁŽæ‚èˆ—
+				//æ‚ÁŽæ‚èˆ—(—vC³)
 				if (object1->getType() == Type::CHANGE_BULLET &&object2->getType()==Type::ENEMY)
 				{				
 					ChangeAfter();

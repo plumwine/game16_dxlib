@@ -13,11 +13,15 @@ LoadScene::~LoadScene()
 void LoadScene::initialize()
 {	
 	TextuerLoad::createInstance();   //テクスチャロードを作成
-	TextuerLoad::getInstance().add("tank","img/TankATK.png");  //画像の追加（テスト）
+	
 	//ゲームシーン
-	TextuerLoad::getInstance().add("player", "img/F4.png");
-	TextuerLoad::getInstance().add("enemy", "img/TankATKR.png");
 	TextuerLoad::getInstance().add("bullet", "img/Bullet.png");
+	TextuerLoad::getInstance().add("player", "img/F4.png");
+	TextuerLoad::getInstance().add("enemy", "img/TankATK.png");
+	TextuerLoad::getInstance().add("enemy2", "img/RedBTM.png");
+	TextuerLoad::getInstance().add("enemy3", "img/RedATK.png");
+	TextuerLoad::getInstance().add("Font", "Resouce/Texture/font_just.png");
+	TextuerLoad::getInstance().add("hpNumber", "Resouce/Texture/denColor.png");
 	CWindow::getInstance().log("読み込みが終わったので終了します");
 	isSceneEnd = true;       //ここまでエラーがなかったら終了状態にする
 }

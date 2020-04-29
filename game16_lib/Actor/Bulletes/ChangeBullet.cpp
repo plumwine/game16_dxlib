@@ -8,7 +8,7 @@ ChangeBullet::ChangeBullet(Vector2 pos, CharactorManager * c)
 
 ChangeBullet::~ChangeBullet()
 {
-	delete rend;
+
 }
 
 void ChangeBullet::initialize()
@@ -57,7 +57,7 @@ Type ChangeBullet::getType() const
 
 Vector2 ChangeBullet::getPpstion() const
 {
-	return Vector2();
+	return b_mPosittion;
 }
 
 float ChangeBullet::getCircleSize() const

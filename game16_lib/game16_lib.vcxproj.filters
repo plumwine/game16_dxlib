@@ -23,6 +23,10 @@
     <ClCompile Include="Utility\Timer.cpp" />
     <ClCompile Include="Actor\Bulletes\ChangeBullet.cpp" />
     <ClCompile Include="Actor\CharaManager\EnemySpawn.cpp" />
+    <ClCompile Include="Actor\Enemies\CircleMoveEnemy.cpp" />
+    <ClCompile Include="Actor\Bulletes\Bom.cpp" />
+    <ClCompile Include="Actor\Enemies\BomEnemy.cpp" />
+    <ClCompile Include="Actor\Bulletes\BomBallet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device\Input.h" />
@@ -49,5 +53,9 @@
     <ClInclude Include="Utility\Timer.h" />
     <ClInclude Include="Actor\Bulletes\ChangeBullet.h" />
     <ClInclude Include="Actor\CharaManager\EnemySpawn.h" />
+    <ClInclude Include="Actor\Enemies\CircleMoveEnemy.h" />
+    <ClInclude Include="Actor\Bulletes\Bom.h" />
+    <ClInclude Include="Actor\Enemies\BomEnemy.h" />
+    <ClInclude Include="Actor\Bulletes\BomBallet.h" />
   </ItemGroup>
 </Project>

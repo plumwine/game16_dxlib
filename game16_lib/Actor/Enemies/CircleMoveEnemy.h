@@ -1,29 +1,18 @@
 #pragma once
-#include"DxLib.h"
+#include "DxLib.h"
 #include "../../Math/Vector2.h"
 #include "../../Device/Input.h"
 #include"../../Device/Renderer.h"
 #include"../CharaManager/BaseObject.h"
 #include"../CharaManager/CharactorManager.h"
-#include<list>
-#include"../Bulletes/Bullet.h"
-#include"../../Actor/Enemies/Enemy.h"
-#include"../Bulletes/ChangeBullet.h"
-#include "../../Support/CWindow.h"
+#include"../Player/Player.h"
 
 
-class Player:public BaseObject
+class CirecleMoveEnemy :public BaseObject
 {
-	//一番最初の操作キャラ、ボム使用時にこれに戻る
 public:
-	Player(Vector2 pos,CharactorManager *c);
-	~Player();
-
-	
-	void Shot(Vector2 pos);
-	void CShot(Vector2 pos);
-
-
+	CirecleMoveEnemy(Vector2 pos, CharactorManager *c);
+	~CirecleMoveEnemy();
 	// BaseObject を介して継承されました
 	virtual void initialize() override;
 
@@ -32,6 +21,12 @@ public:
 	virtual void draw(Renderer * renderer) override;
 
 	virtual void hit(BaseObject & other) override;
+
+	void Shot(Vector2 pos);
+
+	void CShot(Vector2 pos);
+
+	void Jibaku(Vector2 pos);
 
 	virtual bool getIsDeath() const override;
 
@@ -42,11 +37,18 @@ public:
 	virtual float getCircleSize() const override;
 
 	virtual Type ChangeType() override;
-	
+
+
+
+
+
 private:
-	
+
 	bool MoveFlag;
 	Input* input;
 	Renderer* rend;
 	CharactorManager* charaManager;
+	Timer *mTimer;
+
+
 };

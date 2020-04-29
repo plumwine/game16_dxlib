@@ -18,8 +18,8 @@ void GamePlay::initialize()
 	m_pInput->init();          //input初期化
 	isSceneEnd = false;   //最初はfalse
 	
-	charaManager->add(new Player(Vector2(0, 0), charaManager));
-	//charaManager->add(new Enemy(Vector2(0, 0), charaManager));
+	charaManager->add(new Player(Vector2(260, 500), charaManager));
+	
 	enemySpawn = new EnemySpawn(*charaManager);
 	enemySpawn->initialize();
 	
@@ -42,6 +42,7 @@ void GamePlay::update(float deltaTime)
 void GamePlay::draw(Renderer* renderer)
 {
 	charaManager->draw(renderer);
+	renderer->drawText("Font", "HP", Vector2(0, 0),Vector2(0,0),Vector2(1,1),0.0f,255);
 }
 
 void GamePlay::shutdown()

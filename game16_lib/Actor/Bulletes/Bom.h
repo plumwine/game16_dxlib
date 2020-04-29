@@ -4,16 +4,14 @@
 #include"../CharaManager/CharactorManager.h"
 #include"../../Device/Renderer.h"
 #include"../CharaManager/BaseObject.h"
-#include"../../Support/CWindow.h"
+#include"../../GameBase/WindowInfo.h"
 
 
-class Bullet:public BaseObject
+class Bom :public BaseObject
 {
 public:
-	Bullet(Vector2 pos,CharactorManager* c,Type t);
-	~Bullet();
-	//弾のタイプ分け
-	void setBulletType();
+	Bom(Vector2 pos, CharactorManager* c);
+	~Bom();
 	//初期化
 	virtual void initialize()override;
 	//更新
@@ -32,11 +30,14 @@ public:
 	virtual float getCircleSize() const override;
 
 	virtual Type ChangeType()  override;
+
+
+
 private:
-	
+
 	float angle;
 	bool Death;
 	Renderer* rend;
 	CharactorManager* charaManager;
-	Type b_SetType;
+	Timer *mTimer;
 };

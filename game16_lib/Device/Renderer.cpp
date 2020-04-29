@@ -29,7 +29,7 @@ void Renderer::draw2D(std::string textureName, Vector2 position, Vector2 drawPos
 		(int)textureSize.x, (int)textureSize.y,TextuerLoad::getInstance().set(textureName));
 
 	//ラジアンを度に変換
-	float deg = angle * (180 / pi);
+	float deg = angle * (DX_PI_F/180.0f);
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha);  //ブレンドモードをαに設定
 	DrawRotaGraph3(
 		(int)position.x + ((int)textureSize.x/2), (int)position.y + ((int)textureSize.y / 2),       //ここ注意！！バグる可能性大

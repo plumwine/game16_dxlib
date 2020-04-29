@@ -34,7 +34,7 @@ void Title::update(float deltaTime)
 //描画
 void Title::draw(Renderer* renderer)
 {
-	renderer->draw2D("tank", Vector2(200, 200), Vector2(0,0), Vector2(64,64));
+	renderer->drawText("Font", "TITLE", Vector2(180,450), Vector2(0, 0), Vector2(1, 1), 0.0f, 255);
 }
 //終了処理
 void Title::shutdown()

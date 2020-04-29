@@ -5,13 +5,15 @@
 #include"../../Device/Renderer.h"
 #include"../CharaManager/BaseObject.h"
 #include"../../Support/CWindow.h"
+#include"../../GameBase/WindowInfo.h"
 
 
-class Bullet:public BaseObject
+
+class BomBullet :public BaseObject
 {
 public:
-	Bullet(Vector2 pos,CharactorManager* c,Type t);
-	~Bullet();
+	BomBullet(Vector2 pos, CharactorManager* c, Type t);
+	~BomBullet();
 	//’e‚Ìƒ^ƒCƒv•ª‚¯
 	void setBulletType();
 	//‰Šú‰»
@@ -33,10 +35,12 @@ public:
 
 	virtual Type ChangeType()  override;
 private:
-	
+
 	float angle;
 	bool Death;
 	Renderer* rend;
 	CharactorManager* charaManager;
 	Type b_SetType;
+	Timer *mTimer;
+	int BomFlag;
 };

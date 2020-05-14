@@ -1,40 +1,39 @@
-#include "CircleMoveEnemy.h"
-#include <random>
+#include "Boss.h"
 
-
-CirecleMoveEnemy::CirecleMoveEnemy(Vector2 pos, CharactorManager * c):mTimer(new Timer())
+Boss::Boss(Vector2 pos, CharactorManager * c) :mTimer(new Timer())
 {
 	charaManager = c;
 	b_mPosittion = pos;
 }
 
-CirecleMoveEnemy::~CirecleMoveEnemy()
+Boss::~Boss()
 {
 	delete input;
 	delete rend;
 	delete mTimer;
 }
 
-void CirecleMoveEnemy::initialize()
+void Boss::initialize()
 {
-	b_mHp = 3;
-	
+	b_mHp = 30;
+
 	input = new Input;
 	input->init();
 	rend = new Renderer;
-	b_mCircleSize = 16.0f;
+	b_mCircleSize = 64.0f;
 	b_mType = Type::ENEMY;
 	b_mAngle = 180.0f;
 	mTimer->initialize();
-	b_mSpeed = 30.0f;
+	b_mSpeed = 20.0f;
 }
 
-void CirecleMoveEnemy::update(float deltaTime)
+void Boss::update(float deltaTime)
 {
-
 	input->update();
 	mTimer->update(deltaTime);
 	b_mVelocity = Vector2(0, 0);
+
+
 	//–³“GŽžŠÔ
 	if (DamgeFlag&&mTimer->timerSet(2))
 	{
@@ -60,6 +59,13 @@ void CirecleMoveEnemy::update(float deltaTime)
 	if (b_mType == Type::ENEMY)
 	{
 		b_mVelocity.y += 2;
+		
+		if (b_mPosittion.y > 150)
+		{
+			b_mVelocity = Vector2(0, 0);
+		}
+		
+		
 		if (mTimer->timerSet(2))
 		{
 			Shot(Vector2(b_mPosittion.x, b_mPosittion.y));
@@ -81,7 +87,7 @@ void CirecleMoveEnemy::update(float deltaTime)
 
 
 	//æ‚ÁŽæ‚èŒã
-	if (b_mType == Type::PLAYER&&!b_mEndFlag)
+	if (b_mType == Type::PLAYER && !b_mEndFlag)
 	{
 
 		if (input->isKeyState(KEYCORD::ARROW_UP))
@@ -108,28 +114,27 @@ void CirecleMoveEnemy::update(float deltaTime)
 		{
 			CShot(Vector2(b_mPosittion.x, b_mPosittion.y));
 		}
-		
+
 		if (b_mHp <= 0)
 		{
 			b_mEndFlag = true;
 		}
-		
-		
-		b_mPosittion += b_mVelocity*deltaTime*b_mSpeed;
+
+
+		b_mPosittion += b_mVelocity * deltaTime*b_mSpeed;
 	}
-
-	
-
 }
 
-void CirecleMoveEnemy::draw(Renderer * renderer)
+void Boss::draw(Renderer * renderer)
 {
 	if (b_mType == Type::ENEMY)
 	{
 		DrawCircle(b_mPosittion.x + 64 / 2, b_mPosittion.y + 64 / 2, b_mCircleSize, GetColor(255, 0, 0), FALSE);
-		rend->draw2D("enemy2", Vector2(b_mPosittion.x, b_mPosittion.y), Vector2(0, 0), Vector2(64, 64), Vector2(32, 32), Vector2(1.0f, 1.0f), b_mAngle, 255);
+		
+		rend->draw2D("enemy2", Vector2(b_mPosittion.x, b_mPosittion.y), Vector2(0, 0), Vector2(64, 64), Vector2(32, 32), Vector2(3.0f, 3.0f), b_mAngle, 255);
+		rend->draw2D("enemy3", Vector2(b_mPosittion.x, b_mPosittion.y), Vector2(0, 0), Vector2(64, 64), Vector2(32, 32), Vector2(3.0f, 3.0f), b_mAngle, 255);
 	}
-	else if(!b_mEndFlag)
+	else if (!b_mEndFlag)
 	{
 
 		if (DamgeFlag)
@@ -142,7 +147,9 @@ void CirecleMoveEnemy::draw(Renderer * renderer)
 		}
 		DrawCircle(b_mPosittion.x + 64 / 2, b_mPosittion.y + 64 / 2, b_mCircleSize, GetColor(0, 0, 255), FALSE);
 		b_mAngle = 0.0f;
-		rend->draw2D("enemy2", Vector2(b_mPosittion.x, b_mPosittion.y), Vector2(0, 0), Vector2(64, 64), Vector2(32, 32), Vector2(1.0f, 1.0f), b_mAngle, b_mArpha);
+		
+		rend->draw2D("enemy2", Vector2(b_mPosittion.x, b_mPosittion.y), Vector2(0, 0), Vector2(64, 64), Vector2(32, 32), Vector2(3.0f, 3.0f), b_mAngle, 255);
+		rend->draw2D("enemy3", Vector2(b_mPosittion.x, b_mPosittion.y), Vector2(0, 0), Vector2(64, 64), Vector2(32, 32), Vector2(3.0f, 3.0f), b_mAngle, 255);
 		if (b_mType == Type::PLAYER)
 		{
 			rend->drawNumber("hpNumber", Vector2(150, 10), b_mHp, 0, Vector2(0, 0), Vector2(1, 1), 0.0f, 255);
@@ -155,7 +162,7 @@ void CirecleMoveEnemy::draw(Renderer * renderer)
 
 }
 
-void CirecleMoveEnemy::hit(BaseObject & other)
+void Boss::hit(BaseObject & other)
 {
 	if (other.getType() == Type::PLAYER_BULLET&&b_mType == Type::ENEMY)
 	{
@@ -163,89 +170,92 @@ void CirecleMoveEnemy::hit(BaseObject & other)
 		DrawCircle(b_mPosittion.x + 64 / 2, b_mPosittion.y + 64 / 2, b_mCircleSize, GetColor(255, 255, 0), TRUE);
 	}
 
-	
-		if (other.getType() == Type::ENEMY_BULLET&&b_mType == Type::PLAYER)
-		{
-			b_mHp -= 1;
-			DrawCircle(b_mPosittion.x + 64 / 2, b_mPosittion.y + 64 / 2, b_mCircleSize, GetColor(255, 255, 0), TRUE);
-			mTimer->initialize();
-			DamgeFlag = TRUE;
-		}
-		if (other.getType() == Type::ENEMY&&b_mType == Type::PLAYER)
-		{
-			b_mHp -= 1;
-			DrawCircle(b_mPosittion.x + 64 / 2, b_mPosittion.y + 64 / 2, b_mCircleSize, GetColor(255, 255, 0), TRUE);
-			mTimer->initialize();
-			DamgeFlag = TRUE;
-		}
 
-	
-	
+	if (other.getType() == Type::ENEMY_BULLET&&b_mType == Type::PLAYER)
+	{
+		b_mHp -= 1;
+		DrawCircle(b_mPosittion.x + 64 / 2, b_mPosittion.y + 64 / 2, b_mCircleSize, GetColor(255, 255, 0), TRUE);
+		mTimer->initialize();
+		DamgeFlag = TRUE;
+	}
+	if (other.getType() == Type::ENEMY&&b_mType == Type::PLAYER)
+	{
+		b_mHp -= 1;
+		DrawCircle(b_mPosittion.x + 64 / 2, b_mPosittion.y + 64 / 2, b_mCircleSize, GetColor(255, 255, 0), TRUE);
+		mTimer->initialize();
+		DamgeFlag = TRUE;
+	}
+
+
+
 
 	if (other.getType() == Type::CHANGE_BULLET&&b_mType == Type::ENEMY)
 	{
 		//Å‰‚ÍT‚¦‚É
 		b_mType = Type::SUB_PLAYER;
 	}
-
 }
 
-void CirecleMoveEnemy::Shot(Vector2 pos)
+void Boss::Shot(Vector2 pos)
 {
-	
-
 	if (b_mType == Type::PLAYER)
 	{
 		charaManager->add(new Bullet(Vector2(b_mPosittion.x + 20, b_mPosittion.y), charaManager, b_mType, -30.0f));
 		charaManager->add(new Bullet(Vector2(b_mPosittion.x - 20, b_mPosittion.y), charaManager, b_mType, 30.0f));
+
+		charaManager->add(new Bullet(Vector2(b_mPosittion.x + 40, b_mPosittion.y), charaManager, b_mType, -80.0f));
+		charaManager->add(new Bullet(Vector2(b_mPosittion.x - 40, b_mPosittion.y), charaManager, b_mType, 80.0f));
+		charaManager->add(new BomBullet(pos, charaManager, b_mType));
 	}
 	else
 	{
 		charaManager->add(new Bullet(Vector2(b_mPosittion.x + 20, b_mPosittion.y), charaManager, b_mType, 30.0f));
 		charaManager->add(new Bullet(Vector2(b_mPosittion.x - 20, b_mPosittion.y), charaManager, b_mType, -30.0f));
+
+		charaManager->add(new Bullet(Vector2(b_mPosittion.x + 40, b_mPosittion.y), charaManager, b_mType, 80.0f));
+		charaManager->add(new Bullet(Vector2(b_mPosittion.x - 40, b_mPosittion.y), charaManager, b_mType, -80.0f));
+
+		charaManager->add(new BomBullet(pos, charaManager, b_mType));
 	}
 }
 
-
-void CirecleMoveEnemy::CShot(Vector2 pos)
+void Boss::CShot(Vector2 pos)
 {
 	charaManager->add(new ChangeBullet(pos, charaManager));
 }
 
-void CirecleMoveEnemy::Jibaku(Vector2 pos)
+void Boss::Jibaku(Vector2 pos)
 {
 	charaManager->add(new Bom(pos, charaManager));
 	b_mIsDeath = true;
-	
 }
 
-bool CirecleMoveEnemy::getIsDeath() const
+bool Boss::getIsDeath() const
 {
 	return b_mIsDeath;
 }
 
-Type CirecleMoveEnemy::getType() const
+Type Boss::getType() const
 {
 	return b_mType;
 }
 
-Vector2 CirecleMoveEnemy::getPpstion() const
+Vector2 Boss::getPpstion() const
 {
 	return b_mPosittion;
 }
 
-float CirecleMoveEnemy::getCircleSize() const
+float Boss::getCircleSize() const
 {
 	return b_mCircleSize;
 }
 
-
-void CirecleMoveEnemy::setIsDeath(bool isDeath)
+void Boss::setIsDeath(bool isDeath)
 {
 	b_mIsDeath = isDeath;
 }
 
-void CirecleMoveEnemy::SubChange()
+void Boss::SubChange()
 {
 	switch (b_mType)
 	{

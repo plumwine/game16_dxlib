@@ -52,12 +52,13 @@ Vector2 Bom::getPpstion() const
 	return b_mPosittion;
 }
 
+
 float Bom::getCircleSize() const
 {
 	return b_mCircleSize;
 }
 
-Type Bom::ChangeType()
+void Bom::setIsDeath(bool isDeath)
 {
-	return Type();
+	b_mIsDeath = isDeath;
 }

@@ -8,6 +8,7 @@
 //コンストラクタ
 GameManager::GameManager()
 {
+
 }
 
 //デスストラクタ

@@ -8,6 +8,8 @@ GamePlay::GamePlay()
 GamePlay::~GamePlay()
 {
 	delete m_pInput;
+	delete enemySpawn;
+	delete charaManager;
 }
 
 void GamePlay::initialize()
@@ -22,6 +24,8 @@ void GamePlay::initialize()
 	
 	enemySpawn = new EnemySpawn(*charaManager);
 	enemySpawn->initialize();
+
+	charaManager->add(new Boss(Vector2(260, -1500), charaManager));
 	
 	//CWindow::getInstance().log("今ゲームプレイに切り替わった");
 }
@@ -31,6 +35,8 @@ void GamePlay::update(float deltaTime)
 	charaManager->update(deltaTime);
 	enemySpawn->spawn();
 	enemySpawn->update(deltaTime);
+	
+	
 	m_pInput->update();         //input更新
 	if (m_pInput->isKeyDown(KEYCORD::Z))
 	{
@@ -41,6 +47,7 @@ void GamePlay::update(float deltaTime)
 
 void GamePlay::draw(Renderer* renderer)
 {
+
 	charaManager->draw(renderer);
 	renderer->drawText("Font", "HP", Vector2(0, 0),Vector2(0,0),Vector2(1,1),0.0f,255);
 }

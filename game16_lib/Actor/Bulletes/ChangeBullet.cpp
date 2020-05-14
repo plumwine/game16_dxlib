@@ -4,6 +4,7 @@ ChangeBullet::ChangeBullet(Vector2 pos, CharactorManager * c)
 {
 	b_mPosittion = Vector2(pos);
 	b_mVelocity = Vector2(0, 0);
+	charaManager = c;
 }
 
 ChangeBullet::~ChangeBullet()
@@ -40,6 +41,7 @@ void ChangeBullet::hit(BaseObject & other)
 {
 	if (other.getType() == Type::ENEMY)
 	{
+		After();
 		b_mIsDeath = true;
 	}
 
@@ -65,8 +67,23 @@ float ChangeBullet::getCircleSize() const
 	return b_mCircleSize;
 }
 
-Type ChangeBullet::ChangeType()
+void ChangeBullet::setIsDeath(bool isDeath)
 {
-	return Type();
 }
 
+
+
+void ChangeBullet::After()
+{
+
+	for (auto object : charaManager->getUseList())
+	{
+
+		if (object->getType() == Type::SUB_PLAYER)
+		{
+			object->setIsDeath(true);
+		}
+
+	}
+
+}

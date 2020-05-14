@@ -13,6 +13,12 @@ class CirecleMoveEnemy :public BaseObject
 public:
 	CirecleMoveEnemy(Vector2 pos, CharactorManager *c);
 	~CirecleMoveEnemy();
+
+	void Shot(Vector2 pos);
+
+	void CShot(Vector2 pos);
+
+	void Jibaku(Vector2 pos);
 	// BaseObject ÇâÓÇµÇƒåpè≥Ç≥ÇÍÇ‹ÇµÇΩ
 	virtual void initialize() override;
 
@@ -22,11 +28,7 @@ public:
 
 	virtual void hit(BaseObject & other) override;
 
-	void Shot(Vector2 pos);
 
-	void CShot(Vector2 pos);
-
-	void Jibaku(Vector2 pos);
 
 	virtual bool getIsDeath() const override;
 
@@ -36,15 +38,18 @@ public:
 
 	virtual float getCircleSize() const override;
 
-	virtual Type ChangeType() override;
+	
+
+	virtual void setIsDeath(bool isDeath) override;
 
 
 
+	void SubChange();
 
 
 private:
 
-	bool MoveFlag;
+	bool DamgeFlag;
 	Input* input;
 	Renderer* rend;
 	CharactorManager* charaManager;

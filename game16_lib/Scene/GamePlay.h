@@ -6,7 +6,7 @@
 #include "../Actor/Enemies/Enemy.h"
 #include"../Actor/CharaManager/EnemySpawn.h"
 #include"../Actor/CharaManager/CharactorManager.h"
-
+#include"../Actor/Enemies/Boss.h"
 
 class GamePlay : public BaseScene
 {
@@ -23,6 +23,8 @@ public:
 private:
 	CharactorManager *charaManager;
 	EnemySpawn *enemySpawn;
+
+	
 };
 
 

@@ -26,11 +26,15 @@ public:
 
 	virtual Vector2 getPpstion() const override;
 
+	
+
 	virtual float getCircleSize() const override;
 
-	virtual Type ChangeType()  override;
+	virtual void setIsDeath(bool isDeath) override;
 
-
+	
+	//•ÏXŒãŒãˆ—
+	void After();
 
 private:
 

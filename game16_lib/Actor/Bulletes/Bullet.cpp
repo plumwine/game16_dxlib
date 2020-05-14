@@ -1,12 +1,14 @@
 #include "Bullet.h"
 #include"../../GameBase/WindowInfo.h"
 
-Bullet::Bullet(Vector2 pos,CharactorManager* c,Type t)
+Bullet::Bullet(Vector2 pos,CharactorManager* c,Type t,float angle)
 {
 	b_mPosittion = Vector2(pos);
 	b_mVelocity = Vector2(0, 0);
 	b_SetType = t;
 	b_mCircleSize = 4.0f;
+	b_mAngle = angle;
+	b_mSpeed = 7;
 }
 
 Bullet::~Bullet()
@@ -42,6 +44,8 @@ void Bullet::update(float deltaTime)
 	{
 		b_mVelocity.y -= 12.0f;
 		b_mPosittion += b_mVelocity;
+
+	
 	}
 	if(b_mType == Type::ENEMY_BULLET)
 	{
@@ -57,16 +61,23 @@ void Bullet::update(float deltaTime)
 	{
 		b_mIsDeath = true;
 	}
+
+	//’e‚Ì‰ñ“]
+	
+	Vector2 MoveAngle;//i‚Þ•ûŒü
+	
+	float Sin = sin(b_mAngle);
+	float Cos = cos(b_mAngle);
+
+	MoveAngle.x = b_mVelocity.x*Cos - b_mVelocity.y*Sin;
+	MoveAngle.y = b_mVelocity.x*Sin + b_mVelocity.y*Cos;
+	b_mPosittion = b_mPosittion + MoveAngle * (deltaTime*b_mSpeed);
+	
 }
 
 void Bullet::draw(Renderer * renderer)
 {
 	rend->draw2D("bullet", Vector2(b_mPosittion.x, b_mPosittion.y), Vector2(0, 0), Vector2(64, 64), Vector2(32, 32), Vector2(1.0f, 1.0f), b_mAngle, 255);
-
-	if (b_mType == Type::ENEMY_BULLET)
-	{
-		b_mAngle = 180.0f;
-	}
 }
 
 void Bullet::hit(BaseObject & other)
@@ -110,8 +121,7 @@ float Bullet::getCircleSize() const
 	return b_mCircleSize;
 }
 
-Type Bullet::ChangeType()
+void Bullet::setIsDeath(bool isDeath)
 {
-	return Type();
+	b_mIsDeath = isDeath;
 }
-

@@ -161,6 +161,7 @@
     <ClCompile Include="Actor\CharaManager\BaseObject.cpp" />
     <ClCompile Include="Actor\CharaManager\CharactorManager.cpp" />
     <ClCompile Include="Actor\Enemies\BomEnemy.cpp" />
+    <ClCompile Include="Actor\Enemies\Boss.cpp" />
     <ClCompile Include="Actor\Enemies\CircleMoveEnemy.cpp" />
     <ClCompile Include="Device\Renderer.cpp" />
     <ClCompile Include="Actor\Bulletes\Bullet.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="Actor\Bulletes\BomBallet.h" />
     <ClInclude Include="Actor\CharaManager\BaseObject.h" />
     <ClInclude Include="Actor\CharaManager\CharactorManager.h" />
+    <ClInclude Include="Actor\Enemies\Boss.h" />
     <ClInclude Include="Actor\Enemies\CircleMoveEnemy.h" />
     <ClInclude Include="Actor\Enemies\BomEnemy.h" />
     <ClInclude Include="Device\Renderer.h" />

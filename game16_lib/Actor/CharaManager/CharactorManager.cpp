@@ -27,6 +27,19 @@ CharactorManager::~CharactorManager()
 
 }
 
+Vector2 CharactorManager::searchPlayer()
+{
+	for (auto object : mObjectsList)
+	{
+		if (object->getType() == Type::PLAYER)
+		{
+			return object->getPpstion();
+		}
+		
+	}
+	return Vector2(0,0);
+}
+
 
 
 //リストのクリア
@@ -80,12 +93,6 @@ void CharactorManager::objectsManager_update(float deltaTime)
 			{
 				object1->hit(*object2);
 				object2->hit(*object1);
-				//乗っ取り処理(要修正)
-				if (object1->getType() == Type::CHANGE_BULLET &&object2->getType()==Type::ENEMY)
-				{				
-					ChangeAfter();
-					object2->ChangeType();
-				}
 			}
 		}
 	}
@@ -119,15 +126,7 @@ void CharactorManager::draw(Renderer * renderer)
 	}
 }
 
-void CharactorManager::ChangeAfter()
+std::vector<BaseObject*> CharactorManager::getUseList()
 {
-	auto itr = mObjectsList.begin();
-	while (itr != mObjectsList.end())
-	{
-		//オブジェクトがnullか死んでいたら削除
-		if ((*itr)->getType()==Type::PLAYER)
-			itr = mObjectsList.erase(itr);
-		else
-			itr++;        //次へ
-	}
+	return mObjectsList;
 }

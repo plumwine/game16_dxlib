@@ -7,13 +7,14 @@
 #include"../CharaManager/CharactorManager.h"
 #include"../Player/Player.h"
 #include"../Bulletes/Bom.h"
+#include"../Bulletes/BomBallet.h"
 
 
-class Enemy:public BaseObject
+class Boss :public BaseObject
 {
 public:
-	Enemy(Vector2 pos,CharactorManager *c);
-	~Enemy();
+	Boss(Vector2 pos, CharactorManager *c);
+	~Boss();
 	// BaseObject ÇâÓÇµÇƒåpè≥Ç≥ÇÍÇ‹ÇµÇΩ
 	virtual void initialize() override;
 
@@ -41,17 +42,17 @@ public:
 
 	virtual void setIsDeath(bool isDeath) override;
 
-	
+
 
 	void SubChange();
-	
+
 private:
-	
+
 	bool DamgeFlag;
 	Input* input;
 	Renderer* rend;
 	CharactorManager* charaManager;
 	Timer *mTimer;
 
-	
+
 };

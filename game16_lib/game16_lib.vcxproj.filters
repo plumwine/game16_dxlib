@@ -27,6 +27,7 @@
     <ClCompile Include="Actor\Bulletes\Bom.cpp" />
     <ClCompile Include="Actor\Enemies\BomEnemy.cpp" />
     <ClCompile Include="Actor\Bulletes\BomBallet.cpp" />
+    <ClCompile Include="Actor\Enemies\Boss.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device\Input.h" />
@@ -57,5 +58,6 @@
     <ClInclude Include="Actor\Bulletes\Bom.h" />
     <ClInclude Include="Actor\Enemies\BomEnemy.h" />
     <ClInclude Include="Actor\Bulletes\BomBallet.h" />
+    <ClInclude Include="Actor\Enemies\Boss.h" />
   </ItemGroup>
 </Project>

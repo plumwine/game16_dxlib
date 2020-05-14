@@ -18,8 +18,8 @@ BomEnemy::~BomEnemy()
 
 void BomEnemy::initialize()
 {
-	b_mHp = 100;
-	MoveFlag = FALSE;
+	b_mHp = 3;
+	
 	input = new Input;
 	input->init();
 	rend = new Renderer;
@@ -27,6 +27,7 @@ void BomEnemy::initialize()
 	b_mType = Type::ENEMY;
 	b_mAngle = 180.0f;
 	mTimer->initialize();
+	b_mSpeed = 20.0f;
 }
 
 void BomEnemy::update(float deltaTime)
@@ -35,6 +36,27 @@ void BomEnemy::update(float deltaTime)
 
 	input->update();
 	b_mVelocity = Vector2(0, 0);
+
+	//–³“GŽžŠÔ
+	if (DamgeFlag&&mTimer->timerSet(2))
+	{
+		DamgeFlag = FALSE;
+	}
+
+
+	if (input->isKeyDown(KEYCORD::V))
+	{
+		SubChange();
+	}
+
+	if (b_mType == Type::SUB_PLAYER)
+	{
+		b_mPosittion = charaManager->searchPlayer() + Vector2(30, 30);
+		if (input->isKeyDown(KEYCORD::C))
+		{
+			Jibaku(Vector2(b_mPosittion.x, b_mPosittion.y));
+		}
+	}
 
 	if (b_mType == Type::ENEMY)
 	{
@@ -48,7 +70,16 @@ void BomEnemy::update(float deltaTime)
 			b_mIsDeath = true;
 		}
 
+		if (b_mPosittion.y > WindowInfo::WindowHeight	
+			|| b_mPosittion.x>WindowInfo::WindowWidth
+			|| b_mPosittion.x < 0)
+		{
+			b_mIsDeath = true;
+		}
+		b_mPosittion += b_mVelocity;
 	}
+
+
 
 
 
@@ -58,19 +89,19 @@ void BomEnemy::update(float deltaTime)
 
 		if (input->isKeyState(KEYCORD::ARROW_UP))
 		{
-			b_mVelocity.y -= 3;
+			b_mVelocity.y -= 6;
 		}
 		if (input->isKeyState(KEYCORD::ARROW_DOWN))
 		{
-			b_mVelocity.y += 3;
+			b_mVelocity.y += 6;
 		}
 		if (input->isKeyState(KEYCORD::ARROW_RIGHT))
 		{
-			b_mVelocity.x += 3;
+			b_mVelocity.x += 6;
 		}
 		if (input->isKeyState(KEYCORD::ARROW_LEFT))
 		{
-			b_mVelocity.x -= 3;
+			b_mVelocity.x -= 6;
 		}
 		if (input->isKeyDown(KEYCORD::SPACE))
 		{
@@ -80,17 +111,15 @@ void BomEnemy::update(float deltaTime)
 		{
 			CShot(Vector2(b_mPosittion.x, b_mPosittion.y));
 		}
-		if (input->isKeyDown(KEYCORD::C))
-		{
-			Jibaku(Vector2(b_mPosittion.x, b_mPosittion.y));
-		}
+		
 		if (b_mHp <= 0)
 		{
 			b_mEndFlag = true;
 		}
-		b_mPosittion += b_mVelocity;
+	
+		b_mPosittion += b_mVelocity*deltaTime*b_mSpeed;
 	}
-	b_mPosittion += b_mVelocity;
+
 
 }
 
@@ -104,10 +133,22 @@ void BomEnemy::draw(Renderer * renderer)
 	}
 	else  if(!b_mEndFlag)
 	{
+		if (DamgeFlag)
+		{
+			b_mArpha = 155;
+		}
+		else
+		{
+			b_mArpha = 255;
+		}
+
 		DrawCircle(b_mPosittion.x + 64 / 2, b_mPosittion.y + 64 / 2, b_mCircleSize, GetColor(0, 0, 255), FALSE);
 		b_mAngle = 0.0f;
 		rend->draw2D("enemy3", Vector2(b_mPosittion.x, b_mPosittion.y), Vector2(0, 0), Vector2(64, 64), Vector2(32, 32), Vector2(1.0f, 1.0f), b_mAngle, 255);
-		rend->drawNumber("hpNumber", Vector2(150, 10), b_mHp, 0, Vector2(0, 0), Vector2(1, 1), 0.0f, 255);
+		if (b_mType == Type::PLAYER)
+		{
+			rend->drawNumber("hpNumber", Vector2(150, 10), b_mHp, 0, Vector2(0, 0), Vector2(1, 1), 0.0f, 255);
+		}
 	}
 	
 	if (b_mEndFlag)
@@ -120,23 +161,35 @@ void BomEnemy::hit(BaseObject & other)
 {
 	if (other.getType() == Type::PLAYER_BULLET&&b_mType == Type::ENEMY)
 	{
-		b_mHp -= 50;
-		DrawCircle(b_mPosittion.x + 64 / 2, b_mPosittion.y + 64 / 2, b_mCircleSize, GetColor(255, 255, 0), TRUE);
-	}
-	if (other.getType() == Type::ENEMY_BULLET&&b_mType == Type::PLAYER)
-	{
-		b_mHp -= 20;
-		DrawCircle(b_mPosittion.x + 64 / 2, b_mPosittion.y + 64 / 2, b_mCircleSize, GetColor(255, 255, 0), TRUE);
-	}
-	if (other.getType() == Type::ENEMY&&b_mType == Type::PLAYER)
-	{
 		b_mHp -= 1;
 		DrawCircle(b_mPosittion.x + 64 / 2, b_mPosittion.y + 64 / 2, b_mCircleSize, GetColor(255, 255, 0), TRUE);
-		
 	}
 
+	if (mTimer->timerSet(2))
+	{
+		if (other.getType() == Type::ENEMY_BULLET&&b_mType == Type::PLAYER)
+		{
+			b_mHp -= 1;
+			DrawCircle(b_mPosittion.x + 64 / 2, b_mPosittion.y + 64 / 2, b_mCircleSize, GetColor(255, 255, 0), TRUE);
+			mTimer->initialize();
+			DamgeFlag = TRUE;
+		}
+		if (other.getType() == Type::ENEMY&&b_mType == Type::PLAYER)
+		{
+			b_mHp -= 1;
+			DrawCircle(b_mPosittion.x + 64 / 2, b_mPosittion.y + 64 / 2, b_mCircleSize, GetColor(255, 255, 0), TRUE);
+			mTimer->initialize();
+			DamgeFlag = TRUE;
+		}
 
+	}
 	
+
+	if (other.getType() == Type::CHANGE_BULLET&&b_mType == Type::ENEMY)
+	{
+		//Å‰‚ÍT‚¦‚É
+		b_mType = Type::SUB_PLAYER;
+	}
 
 	
 }
@@ -155,7 +208,6 @@ void BomEnemy::Jibaku(Vector2 pos)
 {
 	charaManager->add(new Bom(pos, charaManager));
 	b_mIsDeath = true;
-	charaManager->add(new Player(pos, charaManager));
 }
 
 bool BomEnemy::getIsDeath() const
@@ -178,8 +230,24 @@ float BomEnemy::getCircleSize() const
 	return b_mCircleSize;
 }
 
-Type BomEnemy::ChangeType()
+void BomEnemy::setIsDeath(bool isDeath)
 {
-	b_mType = Type::PLAYER;
-	return b_mType;
+	b_mIsDeath = isDeath;
+}
+
+
+void BomEnemy::SubChange()
+{
+	switch (b_mType)
+	{
+	case PLAYER:
+		b_mType = Type::SUB_PLAYER;
+		break;
+	case SUB_PLAYER:
+		b_mType = Type::PLAYER;
+		b_mPosittion = charaManager->searchPlayer() + Vector2(-30, -30);
+		break;
+	default:
+		break;
+	}
 }

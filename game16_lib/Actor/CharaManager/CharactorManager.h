@@ -11,6 +11,8 @@ class CharactorManager
 public:
 	CharactorManager();
 	~CharactorManager();
+	//プレイヤーを検索
+	Vector2 searchPlayer();
 	
 	//リストのクリア
 	void clear();
@@ -27,8 +29,7 @@ public:
 	//描画
 	void draw(Renderer* renderer);
 
-	//乗っ取り後処理
-	void ChangeAfter();
+	std::vector<BaseObject*> getUseList();
 private:
 	std::vector<BaseObject*> mObjectsList;        //オブジェクトのリスト
 	std::vector<BaseObject*> mAddObjectsList;     //追加するオブジェクト

@@ -12,6 +12,7 @@ enum Type
 	PLAYER_BULLET,
 	ENEMY_BULLET,
 	CHANGE_BULLET,
+	SUB_PLAYER,
 };
 
 //描画するオブジェクトの基底クラス
@@ -31,9 +32,8 @@ public:
 	virtual void draw(Renderer* renderer) = 0;
 	//当たりた時の処理
 	virtual void hit(BaseObject& other) = 0;
-	//乗っ取り
-	virtual Type ChangeType()=0;
-
+	
+	
 	
 #pragma region Get
 	//死亡しているか
@@ -42,10 +42,13 @@ public:
 	virtual Type getType()const = 0;
 	//自分の位置
 	virtual Vector2 getPpstion()const = 0;
+	
 	//自分の半径
 	virtual float getCircleSize()const = 0;
-
-
+	//set
+	virtual void setIsDeath(bool isDeath) = 0;
+	
+	
 
 #pragma endregion
 
@@ -57,11 +60,13 @@ protected:
 	float b_mSpeed;           //速さ
 	float b_mCircleSize;      //円の判定の半径
 	Vector2 b_mPosittion;     //位置
+	
 	Vector2 b_mVelocity;      //移動方向
 	Vector2 b_mSize;          //画像サイズ
 	bool b_mIsDeath;          //死んだかどうか
 	Type b_mType;             //自分のタイプ
 	float b_mAngle;//角度
+	float b_mArpha; //画像のアルファ値
 	bool b_mEndFlag;//ゲームオーバー
 };
 

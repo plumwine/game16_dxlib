@@ -103,7 +103,8 @@ float BomBullet::getCircleSize() const
 	return b_mCircleSize;
 }
 
-Type BomBullet::ChangeType()
+void BomBullet::setIsDeath(bool isDeath)
 {
-	return Type();
+	b_mIsDeath = isDeath;
 }
+

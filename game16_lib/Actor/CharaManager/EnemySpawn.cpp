@@ -3,6 +3,7 @@
 #include "../Enemies/Enemy.h"
 #include"../Enemies/CircleMoveEnemy.h"
 #include"../Enemies/BomEnemy.h"
+#include"../Enemies/Boss.h"
 
 
 EnemySpawn::EnemySpawn(CharactorManager& charactorManager):
@@ -52,6 +53,16 @@ void EnemySpawn::spawn()
 		{
 			mCharactorManager->add(new BomEnemy(Vector2((i + 1) * 160,(i+1) * -400), mCharactorManager));
 		}
+
+		
 	}
 	
+}
+
+void EnemySpawn::bossSpawn()
+{
+	/*if (mTimer->timerSet(3))
+	{
+	   mCharactorManager->add(new Boss(Vector2(250, -100), mCharactorManager));
+	}*/
 }
